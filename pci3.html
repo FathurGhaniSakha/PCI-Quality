@@ -1,0 +1,446 @@
+<style>
+    /* =====================================================
+       PCI COMBINED — Split Hero (dark 2) + Light Brand (1)
+    ====================================================== */
+    .pcic-root {
+        --primary: #ED1C24;
+        --primary-dark: #C5151E;
+        --primary-light: rgba(237, 28, 36, 0.08);
+        --secondary: #54595F;
+        --text-main: #1E293B;
+        --text-muted: #64748B;
+        --border-color: #E2E8F0;
+        --surface: #ffffff;
+
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: var(--text-main);
+        line-height: 1.6;
+        background: #F8F9FB;
+        margin: 0;
+        padding: 0;
+    }
+
+    .pcic-root * {
+        box-sizing: border-box;
+    }
+
+    /* =====================================================
+       HERO — Split panel, light surface, image on right
+    ====================================================== */
+    .pcic-hero {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px 0;
+    }
+
+    .pcic-hero-panel {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        background: var(--surface);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(30, 41, 59, 0.08);
+        border: 1px solid var(--border-color);
+    }
+
+    /* LEFT: copy + CTA */
+    .pcic-hero-content {
+        padding: 64px 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 2;
+    }
+
+    .pcic-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--primary-light);
+        border: 1px solid rgba(237, 28, 36, 0.20);
+        border-radius: 50px;
+        padding: 6px 16px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 24px;
+        width: fit-content;
+    }
+
+    .pcic-badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--primary);
+    }
+
+    .pcic-hero h1 {
+        font-size: clamp(32px, 3.6vw, 46px);
+        font-weight: 800;
+        letter-spacing: -0.8px;
+        line-height: 1.12;
+        color: var(--text-main);
+        margin: 0 0 20px 0;
+    }
+
+    .pcic-hero h1 span {
+        color: var(--primary);
+    }
+
+    .pcic-hero-desc {
+        font-size: 16px;
+        color: var(--text-muted);
+        line-height: 1.85;
+        max-width: 480px;
+        margin-bottom: 36px;
+    }
+
+    .pcic-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--primary);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 15px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        width: fit-content;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 24px rgba(237, 28, 36, 0.25);
+    }
+
+    .pcic-cta:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(237, 28, 36, 0.32);
+    }
+
+    .pcic-cta svg {
+        transition: transform 0.3s ease;
+    }
+
+    .pcic-cta:hover svg {
+        transform: translateX(4px);
+    }
+
+    /* RIGHT: image + floating stat cards */
+    .pcic-hero-visual {
+        position: relative;
+        background: linear-gradient(135deg, rgba(237, 28, 36, 0.35) 0%, rgba(197, 21, 30, 0.45) 100%),
+            url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+        min-height: 420px;
+        display: flex;
+        align-items: flex-end;
+        padding: 28px;
+    }
+
+
+    /* =====================================================
+       CAPABILITIES — clean circular icon cards (design 1)
+    ====================================================== */
+    .pcic-capabilities {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 20px;
+    }
+
+    .pcic-capabilities-header {
+        text-align: center;
+        margin-bottom: 48px;
+    }
+
+    .pcic-section-label {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 12px;
+        display: block;
+    }
+
+    .pcic-capabilities-header h2 {
+        font-size: 32px;
+        color: var(--text-main);
+        font-weight: 800;
+        margin: 0 0 12px 0;
+        letter-spacing: -0.5px;
+    }
+
+    .pcic-capabilities-header h2::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: var(--primary);
+        margin: 16px auto 0;
+        border-radius: 4px;
+    }
+
+    .pcic-capabilities-header p {
+        font-size: 15px;
+        color: var(--text-muted);
+        max-width: 520px;
+        margin: 16px auto 0;
+    }
+
+    .pcic-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 32px;
+    }
+
+    .pcic-card {
+        background: var(--surface);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 40px 24px;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        display: block;
+    }
+
+    .pcic-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: var(--primary);
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+        transform-origin: left;
+    }
+
+    .pcic-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border-color: transparent;
+    }
+
+    .pcic-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .pcic-card-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 24px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--primary-light);
+        border-radius: 50%;
+        transition: all 0.4s ease;
+    }
+
+    .pcic-card:hover .pcic-card-icon-wrapper {
+        background-color: var(--primary);
+        transform: scale(1.05);
+    }
+
+    .pcic-card-icon-svg {
+        color: var(--primary);
+        transition: all 0.4s ease;
+    }
+
+    .pcic-card:hover .pcic-card-icon-svg {
+        color: #ffffff;
+    }
+
+    .pcic-card h4 {
+        font-size: 18px;
+        color: var(--secondary);
+        margin: 0 0 8px 0;
+        font-weight: 700;
+    }
+
+    .pcic-card-arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid var(--border-color);
+        color: var(--text-muted);
+        margin-top: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .pcic-card:hover .pcic-card-arrow {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+        transform: rotate(45deg);
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+    @media (max-width: 860px) {
+        .pcic-hero-panel {
+            grid-template-columns: 1fr;
+        }
+
+        .pcic-hero-content {
+            padding: 48px 32px 32px;
+        }
+
+        .pcic-hero-visual {
+            min-height: 280px;
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .pcic-hero-content {
+            padding: 40px 24px 28px;
+        }
+
+        .pcic-capabilities {
+            padding: 56px 20px;
+        }
+
+        .pcic-card {
+            padding: 30px 20px;
+        }
+    }
+</style>
+
+<div class="pcic-root">
+
+    <!-- ================================================
+         HERO — split panel: copy left, image+stats right
+    ================================================== -->
+    <div class="pcic-hero">
+        <div class="pcic-hero-panel">
+
+            <div class="pcic-hero-content">
+                <div class="pcic-badge">
+                    <span class="pcic-badge-dot"></span>
+                    Resource &amp; Energy
+                </div>
+
+                <h1>Power a <span>Sustainable</span> Future</h1>
+
+                <p class="pcic-hero-desc">
+                    The energy and natural resources sectors are transforming through innovation,
+                    efficiency, and sustainability imperatives. Our Resources &amp; Energy Advisory
+                    supports your journey toward digital excellence—leveraging automation, data
+                    analytics, and advanced cybersecurity frameworks to enhance operational safety,
+                    ensure regulatory compliance, and drive sustainable energy management.
+                </p>
+
+                <a href="https://pci-quality.com" class="pcic-cta">
+                    Explore Our Solutions
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+
+            <div class="pcic-hero-visual">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================================================
+         CAPABILITIES
+    ================================================== -->
+    <div class="pcic-capabilities">
+        <div class="pcic-capabilities-header">
+            <span class="pcic-section-label">What We Offer</span>
+            <h2>Relevant Capabilities</h2>
+            <p>Purpose-built services to modernize and secure your energy operations, from
+                infrastructure to compliance.</p>
+        </div>
+
+        <div class="pcic-grid">
+            <a href="https://pci-quality.com/home/it-consulting/" class="pcic-card">
+                <div class="pcic-card-icon-wrapper">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="pcic-card-icon-svg">
+                        <rect width="20" height="14" x="2" y="3" rx="2" />
+                        <line x1="8" x2="16" y1="21" y2="21" />
+                        <line x1="12" x2="12" y1="17" y2="21" />
+                    </svg>
+                </div>
+                <h4>IT Consulting</h4>
+                <div class="pcic-card-arrow">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+            <a href="https://pci-quality.com/industries/cybersecurity/" class="pcic-card">
+                <div class="pcic-card-icon-wrapper">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="pcic-card-icon-svg">
+                        <path
+                            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2-1 4-2 7-2 2.5 0 4.5 1 6.5 2a1 1 0 0 1 1 1z" />
+                        <path d="m9 12 2 2 4-4" />
+                    </svg>
+                </div>
+                <h4>Cybersecurity</h4>
+                <div class="pcic-card-arrow">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+            <a href="https://pci-quality.com/home/it-audit/" class="pcic-card">
+                <div class="pcic-card-icon-wrapper">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="pcic-card-icon-svg">
+                        <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                        <path d="m9 14 2 2 4-4" />
+                    </svg>
+                </div>
+                <h4>IT Audit</h4>
+                <div class="pcic-card-arrow">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+            <a href="https://pci-quality.com/home/technology-solutions/" class="pcic-card">
+                <div class="pcic-card-icon-wrapper">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="pcic-card-icon-svg">
+                        <rect width="16" height="16" x="4" y="4" rx="2" />
+                        <rect width="6" height="6" x="9" y="9" rx="1" />
+                        <path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2" />
+                    </svg>
+                </div>
+                <h4>Technology Solution</h4>
+                <div class="pcic-card-arrow">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>

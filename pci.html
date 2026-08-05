@@ -1,0 +1,298 @@
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* --- Pengaturan Wrapper & Variabel Warna Global --- */
+    .pci-content-wrapper {
+        /* Deklarasi warna */
+        --primary: #ED1C24;
+        --primary-dark: #C5151E;
+        --primary-light: rgba(237, 28, 36, 0.08);
+        --secondary: #54595F;
+        --text-main: #1E293B;
+        --text-muted: #64748B;
+        --border-color: #E2E8F0;
+
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: var(--text-main);
+        line-height: 1.6;
+        max-width: 1200px;
+        /* Membatasi lebar maksimal agar tidak terlalu memanjang di layar besar */
+        margin: 0 auto;
+    }
+
+    .pci-content-wrapper * {
+        box-sizing: border-box;
+    }
+
+    /* --- Hero Section (Resource and Energy) --- */
+    .pci-hero {
+        margin: 0 0 60px 0;
+        min-height: 80vh;
+        /* Gradient diagonal modern dengan warna Primary, lebih transparan */
+        background: linear-gradient(135deg, rgba(237, 28, 36, 0.3) 0%, rgba(197, 21, 30, 0.4) 35%),
+            url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        color: #ffffff;
+        display: flex;
+        align-items: flex-end;
+        border-radius: 20px 20px 20px 20px;
+        /* Pojok bawah melengkung modern */
+        overflow: hidden;
+        /* Memposisikan teks di bawah */
+    }
+
+    .pci-hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 60px 20px;
+        text-align: left;
+        /* Memposisikan teks di kiri */
+    }
+
+    .pci-hero h1 {
+        font-size: 46px;
+        font-weight: 800;
+        margin-bottom: 16px;
+        color: #ffffff;
+        letter-spacing: -0.5px;
+    }
+
+    .pci-hero h3 {
+        font-size: 22px;
+        font-weight: 400;
+        margin-bottom: 32px;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .pci-hero p {
+        font-size: 16px;
+        max-width: 800px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.8;
+    }
+
+    /* --- Relevant Capabilities Section --- */
+    .pci-capabilities {
+        padding: 20px 0 60px 0;
+    }
+
+    .pci-capabilities-header {
+        text-align: center;
+        margin-bottom: 48px;
+    }
+
+    .pci-capabilities-header h2 {
+        font-size: 32px;
+        color: var(--text-main);
+        font-weight: 800;
+        margin-bottom: 12px;
+        letter-spacing: -0.5px;
+    }
+
+    /* Garis aksen merah di bawah judul */
+    .pci-capabilities-header h2::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: var(--primary);
+        margin: 16px auto 0;
+        border-radius: 4px;
+    }
+
+    .pci-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 32px;
+    }
+
+    .pci-card {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 40px 24px;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        /* Bayangan jauh lebih halus */
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Efek garis atas pada kartu saat hover */
+    .pci-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: var(--primary);
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+        transform-origin: left;
+    }
+
+    .pci-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border-color: transparent;
+    }
+
+    .pci-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    /* Wadah ikon modern */
+    .pci-card-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 24px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--primary-light);
+        border-radius: 50%;
+        transition: all 0.4s ease;
+    }
+
+    .pci-card:hover .pci-card-icon-wrapper {
+        background-color: var(--primary);
+        transform: scale(1.05);
+    }
+
+    .pci-card-icon-svg {
+        color: var(--primary);
+        transition: all 0.4s ease;
+    }
+
+    /* Ubah warna ikon menjadi putih saat hover */
+    .pci-card:hover .pci-card-icon-svg {
+        color: #ffffff;
+    }
+
+    .pci-card h4 {
+        font-size: 18px;
+        color: var(--secondary);
+        margin: 0;
+        font-weight: 700;
+    }
+
+    /* --- Responsivitas Layar Kecil --- */
+    @media (max-width: 768px) {
+        .pci-hero-inner {
+            padding: 40px 20px;
+        }
+
+        .pci-hero h1 {
+            font-size: 36px;
+        }
+
+        .pci-hero h3 {
+            font-size: 18px;
+        }
+
+        .pci-grid {
+            gap: 20px;
+        }
+
+        .pci-card {
+            padding: 30px 20px;
+        }
+    }
+</style>
+
+<!-- Hero Section, dipindah ke luar wrapper agar bisa full screen -->
+<div class="pci-hero">
+    <div class="pci-hero-inner">
+        <h1>Resource and Energy</h1>
+        <h3>Power your sustainability goals with intelligent and secure digital solutions.</h3>
+        <p>The energy and natural resources sectors are transforming through innovation, efficiency, and sustainability
+            imperatives. Our Resources &amp; Energy Advisory supports your journey toward digital excellence by
+            leveraging automation, data analytics, and advanced cybersecurity frameworks. We assist organizations in
+            enhancing operational safety, ensuring regulatory compliance, and driving sustainable energy management
+            practices—empowering your business to meet global energy demands responsibly and securely.</p>
+    </div>
+</div>
+
+<div class="pci-content-wrapper">
+
+    <!-- Capabilities Section -->
+    <div class="pci-capabilities">
+        <div class="pci-capabilities-header">
+            <h2>Relevant Capabilities</h2>
+        </div>
+
+        <div class="pci-grid">
+            <!-- Kapabilitas 1 -->
+            <a href="https://pci-quality.com/home/it-consulting/" class="pci-card">
+                <div class="pci-card-icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="pci-card-icon-svg">
+                        <rect width="20" height="14" x="2" y="3" rx="2" />
+                        <line x1="8" x2="16" y1="21" y2="21" />
+                        <line x1="12" x2="12" y1="17" y2="21" />
+                    </svg>
+                </div>
+                <h4>IT Consulting</h4>
+            </a>
+
+            <!-- Kapabilitas 2 -->
+            <a href="https://pci-quality.com/industries/cybersecurity/" class="pci-card">
+                <div class="pci-card-icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="pci-card-icon-svg">
+                        <path
+                            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2-1 4-2 7-2 2.5 0 4.5 1 6.5 2a1 1 0 0 1 1 1z" />
+                        <path d="m9 12 2 2 4-4" />
+                    </svg>
+                </div>
+                <h4>Cybersecurity</h4>
+            </a>
+
+            <!-- Kapabilitas 3 -->
+            <a href="https://pci-quality.com/home/it-audit/" class="pci-card">
+                <div class="pci-card-icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="pci-card-icon-svg">
+                        <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                        <path d="m9 14 2 2 4-4" />
+                    </svg>
+                </div>
+                <h4>IT Audit</h4>
+            </a>
+
+            <!-- Kapabilitas 4 -->
+            <a href="https://pci-quality.com/home/technology-solutions/" class="pci-card">
+                <div class="pci-card-icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="pci-card-icon-svg">
+                        <rect width="16" height="16" x="4" y="4" rx="2" />
+                        <rect width="6" height="6" x="9" y="9" rx="1" />
+                        <path d="M15 2v2" />
+                        <path d="M15 20v2" />
+                        <path d="M2 15h2" />
+                        <path d="M2 9h2" />
+                        <path d="M20 15h2" />
+                        <path d="M20 9h2" />
+                        <path d="M9 2v2" />
+                        <path d="M9 20v2" />
+                    </svg>
+                </div>
+                <h4>Technology Solution</h4>
+            </a>
+        </div>
+    </div>
+
+</div>

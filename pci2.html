@@ -1,0 +1,729 @@
+<style>
+    /* =====================================================
+       PCI2 — Dark Glassmorphism Edition
+       Completely different from pci.html
+    ====================================================== */
+
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap');
+
+    /* ---- CSS Reset & Global Variables ---- */
+    .pci2-root {
+        --red: #FF2D3B;
+        --red-glow: rgba(255, 45, 59, 0.35);
+        --red-dim: rgba(255, 45, 59, 0.12);
+        --dark-bg: #0A0C10;
+        --dark-card: rgba(255, 255, 255, 0.04);
+        --dark-card-hover: rgba(255, 255, 255, 0.08);
+        --glass-border: rgba(255, 255, 255, 0.10);
+        --text-bright: #FFFFFF;
+        --text-soft: rgba(255, 255, 255, 0.65);
+        --text-dim: rgba(255, 255, 255, 0.38);
+        --accent-teal: #00D4C8;
+
+        font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+        color: var(--text-bright);
+        line-height: 1.6;
+        background: var(--dark-bg);
+        margin: 0;
+        padding: 0;
+    }
+
+    .pci2-root * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* =====================================================
+       HERO  — Split Panel Layout
+    ====================================================== */
+    .pci2-hero {
+        position: relative;
+        min-height: 88vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        overflow: hidden;
+        background: var(--dark-bg);
+    }
+
+    /* ---- Particle / Mesh canvas background ---- */
+    .pci2-hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(ellipse 80% 60% at 30% 50%, rgba(255, 45, 59, 0.18) 0%, transparent 70%),
+            radial-gradient(ellipse 60% 80% at 80% 20%, rgba(0, 212, 200, 0.10) 0%, transparent 60%),
+            radial-gradient(ellipse 100% 100% at 50% 100%, rgba(20, 20, 30, 0.9) 0%, transparent 50%),
+            url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        z-index: 0;
+    }
+
+    /* Dark vignette overlay */
+    .pci2-hero-bg::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg,
+                rgba(10, 12, 16, 0.85) 0%,
+                rgba(10, 12, 16, 0.60) 50%,
+                rgba(10, 12, 16, 0.90) 100%);
+    }
+
+    /* ---- Left panel: text content ---- */
+    .pci2-hero-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 80px 60px 80px 80px;
+    }
+
+    /* Animated chip badge */
+    .pci2-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--red-dim);
+        border: 1px solid rgba(255, 45, 59, 0.30);
+        border-radius: 50px;
+        padding: 6px 16px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 28px;
+        width: fit-content;
+        animation: pci2-fadeUp 0.8s ease both;
+    }
+
+    .pci2-badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--red);
+        box-shadow: 0 0 8px var(--red);
+        animation: pci2-pulse 1.8s ease-in-out infinite;
+    }
+
+    .pci2-hero h1 {
+        font-size: clamp(36px, 4.5vw, 64px);
+        font-weight: 900;
+        line-height: 1.08;
+        letter-spacing: -1.5px;
+        color: var(--text-bright);
+        margin-bottom: 24px;
+        animation: pci2-fadeUp 0.8s 0.15s ease both;
+    }
+
+    .pci2-hero h1 .pci2-highlight {
+        background: linear-gradient(90deg, var(--red) 0%, #FF6B6B 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .pci2-hero-desc {
+        font-size: 16px;
+        color: var(--text-soft);
+        line-height: 1.85;
+        max-width: 500px;
+        margin-bottom: 44px;
+        font-weight: 300;
+        animation: pci2-fadeUp 0.8s 0.30s ease both;
+    }
+
+    /* CTA button */
+    .pci2-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--red);
+        color: #fff;
+        font-family: 'Outfit', sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 15px 32px;
+        border-radius: 50px;
+        text-decoration: none;
+        letter-spacing: 0.3px;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 30px var(--red-glow);
+        width: fit-content;
+        animation: pci2-fadeUp 0.8s 0.45s ease both;
+    }
+
+    .pci2-cta:hover {
+        background: #FF4A55;
+        box-shadow: 0 0 48px var(--red-glow), 0 8px 24px rgba(255, 45, 59, 0.4);
+        transform: translateY(-2px);
+    }
+
+    .pci2-cta-arrow {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .pci2-cta:hover .pci2-cta-arrow {
+        transform: translateX(4px);
+    }
+
+    /* ---- Right panel: stat cards ---- */
+    .pci2-hero-stats {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 80px 80px 80px 40px;
+        gap: 20px;
+    }
+
+    .pci2-stat-card {
+        width: 100%;
+        background: var(--dark-card);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 28px 32px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        animation: pci2-slideLeft 0.7s ease both;
+        transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .pci2-stat-card:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .pci2-stat-card:nth-child(2) {
+        animation-delay: 0.35s;
+    }
+
+    .pci2-stat-card:nth-child(3) {
+        animation-delay: 0.50s;
+    }
+
+    .pci2-stat-card:hover {
+        background: var(--dark-card-hover);
+        border-color: rgba(255, 45, 59, 0.30);
+        transform: translateX(-6px);
+    }
+
+    .pci2-stat-icon {
+        width: 56px;
+        height: 56px;
+        flex-shrink: 0;
+        border-radius: 14px;
+        background: var(--red-dim);
+        border: 1px solid rgba(255, 45, 59, 0.20);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--red);
+        transition: background 0.3s ease;
+    }
+
+    .pci2-stat-card:hover .pci2-stat-icon {
+        background: var(--red);
+        color: #fff;
+    }
+
+    .pci2-stat-number {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--text-bright);
+        line-height: 1;
+        letter-spacing: -1px;
+    }
+
+    .pci2-stat-label {
+        font-size: 13px;
+        color: var(--text-dim);
+        font-weight: 400;
+        margin-top: 4px;
+    }
+
+    /* Decorative vertical line separating panels */
+    .pci2-hero-divider {
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        height: 80%;
+        width: 1px;
+        background: linear-gradient(to bottom, transparent, var(--glass-border) 30%, var(--glass-border) 70%, transparent);
+        z-index: 2;
+    }
+
+    /* =====================================================
+       CAPABILITIES SECTION
+    ====================================================== */
+    .pci2-capabilities {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 40px;
+    }
+
+    /* Section header */
+    .pci2-section-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 64px;
+    }
+
+    .pci2-section-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--accent-teal);
+        margin-bottom: 16px;
+    }
+
+    .pci2-section-header h2 {
+        font-size: clamp(28px, 3vw, 42px);
+        font-weight: 800;
+        letter-spacing: -0.8px;
+        color: var(--text-bright);
+        line-height: 1.15;
+    }
+
+    .pci2-section-header h2 span {
+        color: var(--red);
+    }
+
+    .pci2-section-sub {
+        font-size: 15px;
+        color: var(--text-soft);
+        margin-top: 16px;
+        max-width: 520px;
+    }
+
+    /* ---- Horizontal divider line ---- */
+    .pci2-divider-line {
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--red), var(--accent-teal));
+        border-radius: 4px;
+        margin: 20px auto 0;
+    }
+
+    /* ---- Capability Cards Grid ---- */
+    .pci2-cap-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .pci2-cap-card {
+        position: relative;
+        background: var(--dark-card);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 36px 24px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        overflow: hidden;
+        transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* Shimmering glow blob on hover */
+    .pci2-cap-card::before {
+        content: '';
+        position: absolute;
+        top: -40%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 160%;
+        height: 220%;
+        background: radial-gradient(ellipse, var(--red-glow) 0%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+    }
+
+    /* Bottom gradient accent bar */
+    .pci2-cap-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--red), var(--accent-teal));
+        transform: scaleX(0);
+        transition: transform 0.45s ease;
+        transform-origin: left;
+    }
+
+    .pci2-cap-card:hover {
+        border-color: rgba(255, 45, 59, 0.30);
+        transform: translateY(-10px);
+        background: var(--dark-card-hover);
+        box-shadow:
+            0 24px 60px rgba(0, 0, 0, 0.4),
+            0 0 0 1px rgba(255, 45, 59, 0.15);
+    }
+
+    .pci2-cap-card:hover::before {
+        opacity: 1;
+    }
+
+    .pci2-cap-card:hover::after {
+        transform: scaleX(1);
+    }
+
+    /* Icon hexagon container */
+    .pci2-cap-icon {
+        position: relative;
+        width: 72px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .pci2-cap-icon-bg {
+        position: absolute;
+        inset: 0;
+        background: var(--red-dim);
+        border: 1px solid rgba(255, 45, 59, 0.20);
+        border-radius: 18px;
+        transition: all 0.45s ease;
+    }
+
+    .pci2-cap-card:hover .pci2-cap-icon-bg {
+        background: var(--red);
+        border-color: var(--red);
+        box-shadow: 0 0 30px var(--red-glow);
+        border-radius: 50%;
+    }
+
+    .pci2-cap-icon-svg {
+        position: relative;
+        z-index: 1;
+        color: var(--red);
+        transition: color 0.45s ease, transform 0.45s ease;
+    }
+
+    .pci2-cap-card:hover .pci2-cap-icon-svg {
+        color: #fff;
+        transform: scale(1.15);
+    }
+
+    .pci2-cap-title {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--text-bright);
+        letter-spacing: -0.2px;
+    }
+
+    .pci2-cap-arrow {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid var(--glass-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-dim);
+        transition: all 0.3s ease;
+        margin-top: auto;
+    }
+
+    .pci2-cap-card:hover .pci2-cap-arrow {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+        transform: rotate(45deg);
+    }
+
+    /* =====================================================
+       KEYFRAME ANIMATIONS
+    ====================================================== */
+    @keyframes pci2-fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes pci2-slideLeft {
+        from {
+            opacity: 0;
+            transform: translateX(40px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes pci2-pulse {
+
+        0%,
+        100% {
+            box-shadow: 0 0 6px var(--red);
+        }
+
+        50% {
+            box-shadow: 0 0 14px var(--red), 0 0 24px var(--red-glow);
+        }
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ====================================================== */
+    @media (max-width: 1024px) {
+        .pci2-cap-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .pci2-hero {
+            grid-template-columns: 1fr;
+            min-height: auto;
+        }
+
+        .pci2-hero-divider {
+            display: none;
+        }
+
+        .pci2-hero-content {
+            padding: 60px 28px 40px;
+        }
+
+        .pci2-hero-stats {
+            padding: 0 28px 60px;
+        }
+
+        .pci2-capabilities {
+            padding: 60px 24px;
+        }
+
+        .pci2-cap-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+    }
+</style>
+
+<!-- Root wrapper carries all CSS variables -->
+<div class="pci2-root">
+
+    <!-- ================================================
+         HERO SECTION — Split Panel, Dark Mode
+    ================================================== -->
+    <div class="pci2-hero">
+
+        <!-- Background image + gradients -->
+        <div class="pci2-hero-bg"></div>
+
+        <!-- Vertical divider line between panels -->
+        <div class="pci2-hero-divider"></div>
+
+        <!-- LEFT panel: headline & CTA -->
+        <div class="pci2-hero-content">
+            <!-- Industry badge -->
+            <div class="pci2-badge">
+                <span class="pci2-badge-dot"></span>
+                Resource &amp; Energy
+            </div>
+
+            <h1>
+                Power a<br>
+                <span class="pci2-highlight">Sustainable</span><br>
+                Future
+            </h1>
+
+            <p class="pci2-hero-desc">
+                The energy and natural resources sectors are transforming through innovation,
+                efficiency, and sustainability imperatives. Our advisory accelerates your digital
+                excellence through automation, advanced analytics, and robust cybersecurity
+                frameworks—driving safe, compliant, and sustainable operations.
+            </p>
+
+            <a href="https://pci-quality.com" class="pci2-cta">
+                Explore Our Solutions
+                <svg class="pci2-cta-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+
+        <!-- RIGHT panel: key stat cards -->
+        <div class="pci2-hero-stats">
+            <!-- Stat 1 -->
+            <div class="pci2-stat-card">
+                <div class="pci2-stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="pci2-stat-number">98%</div>
+                    <div class="pci2-stat-label">Operational Uptime Guaranteed</div>
+                </div>
+            </div>
+
+            <!-- Stat 2 -->
+            <div class="pci2-stat-card">
+                <div class="pci2-stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2-1 4-2 7-2 2.5 0 4.5 1 6.5 2a1 1 0 0 1 1 1z" />
+                        <path d="m9 12 2 2 4-4" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="pci2-stat-number">200+</div>
+                    <div class="pci2-stat-label">Security Audits Completed</div>
+                </div>
+            </div>
+
+            <!-- Stat 3 -->
+            <div class="pci2-stat-card">
+                <div class="pci2-stat-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 6v6l4 2" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="pci2-stat-number">15+</div>
+                    <div class="pci2-stat-label">Years Industry Experience</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================
+         RELEVANT CAPABILITIES
+    ================================================== -->
+    <div class="pci2-capabilities">
+
+        <div class="pci2-section-header">
+            <span class="pci2-section-label">What We Offer</span>
+            <h2>Relevant <span>Capabilities</span></h2>
+            <p class="pci2-section-sub">
+                Purpose-built services to modernize and secure your energy operations
+                from infrastructure to compliance.
+            </p>
+            <div class="pci2-divider-line"></div>
+        </div>
+
+        <div class="pci2-cap-grid">
+
+            <!-- Card 1: IT Consulting -->
+            <a href="https://pci-quality.com/home/it-consulting/" class="pci2-cap-card">
+                <div class="pci2-cap-icon">
+                    <div class="pci2-cap-icon-bg"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                        class="pci2-cap-icon-svg">
+                        <rect width="20" height="14" x="2" y="3" rx="2" />
+                        <line x1="8" x2="16" y1="21" y2="21" />
+                        <line x1="12" x2="12" y1="17" y2="21" />
+                    </svg>
+                </div>
+                <span class="pci2-cap-title">IT Consulting</span>
+                <div class="pci2-cap-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Card 2: Cybersecurity -->
+            <a href="https://pci-quality.com/industries/cybersecurity/" class="pci2-cap-card">
+                <div class="pci2-cap-icon">
+                    <div class="pci2-cap-icon-bg"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                        class="pci2-cap-icon-svg">
+                        <path
+                            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2-1 4-2 7-2 2.5 0 4.5 1 6.5 2a1 1 0 0 1 1 1z" />
+                        <path d="m9 12 2 2 4-4" />
+                    </svg>
+                </div>
+                <span class="pci2-cap-title">Cybersecurity</span>
+                <div class="pci2-cap-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Card 3: IT Audit -->
+            <a href="https://pci-quality.com/home/it-audit/" class="pci2-cap-card">
+                <div class="pci2-cap-icon">
+                    <div class="pci2-cap-icon-bg"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                        class="pci2-cap-icon-svg">
+                        <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                        <path d="m9 14 2 2 4-4" />
+                    </svg>
+                </div>
+                <span class="pci2-cap-title">IT Audit</span>
+                <div class="pci2-cap-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Card 4: Technology Solution -->
+            <a href="https://pci-quality.com/home/technology-solutions/" class="pci2-cap-card">
+                <div class="pci2-cap-icon">
+                    <div class="pci2-cap-icon-bg"></div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                        class="pci2-cap-icon-svg">
+                        <rect width="16" height="16" x="4" y="4" rx="2" />
+                        <rect width="6" height="6" x="9" y="9" rx="1" />
+                        <path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2" />
+                    </svg>
+                </div>
+                <span class="pci2-cap-title">Technology Solution</span>
+                <div class="pci2-cap-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</div>
