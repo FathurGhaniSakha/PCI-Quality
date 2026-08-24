@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource & Energy — PCI Quality</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ─── RESET & BASE ─────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #111;
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ─── TOKENS ───────────────────────────────────────── */
+        :root {
+            --red: #C8102E;
+            --red-dk: #9E0C24;
+            --ink: #0E0E0E;
+            --ink-60: #666;
+            --ink-30: #BCBBBB;
+            --fog: #F6F5F3;
+            --line: #E8E6E3;
+            --amber: #C89A2E;
+            --white: #FFFFFF;
+            --max: 1240px;
+            --gutter: 72px;
+        }
+
+        /* ─── TOP BAR ──────────────────────────────────────── */
+        .topbar {
+            background: var(--ink);
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--gutter);
+        }
+
+        .topbar-flags {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .topbar-flags img {
+            width: 20px;
+            border-radius: 2px;
+        }
+
+        .topbar-cta {
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--amber);
+        }
+
+        .topbar-cta span {
+            margin-left: 4px;
+        }
+
+        /* ─── NAV ──────────────────────────────────────────── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: var(--red);
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--gutter);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, .12);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            flex-shrink: 0;
+        }
+
+        .nav-brand svg {
+            width: 46px;
+            height: 46px;
+        }
+
+        .nav-brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            list-style: none;
+            height: 100%;
+        }
+
+        .nav-links li {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 18px;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .88);
+            letter-spacing: 0.01em;
+            border-bottom: 3px solid transparent;
+            transition: color .15s, border-color .15s;
+            gap: 5px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+            border-bottom-color: rgba(255, 255, 255, .5);
+        }
+
+        .nav-links .chevron {
+            font-size: 9px;
+            opacity: .65;
+            margin-top: 1px;
+        }
+
+        .nav-search {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, .12);
+            border: 1.5px solid rgba(255, 255, 255, .22);
+            border-radius: 4px;
+            padding: 7px 14px;
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .nav-search:hover {
+            background: rgba(255, 255, 255, .18);
+        }
+
+        .nav-search input {
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 13px;
+            color: #fff;
+            width: 130px;
+        }
+
+        .nav-search input::placeholder {
+            color: rgba(255, 255, 255, .45);
+        }
+
+        /* ─── BREADCRUMB ───────────────────────────────────── */
+        .breadcrumb {
+            background: var(--fog);
+            border-bottom: 1px solid var(--line);
+            padding: 12px var(--gutter);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--ink-60);
+        }
+
+        .breadcrumb a {
+            color: var(--red);
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb-sep {
+            opacity: .35;
+            font-size: 10px;
+        }
+
+        /* ─── HERO ─────────────────────────────────────────── */
+        .hero {
+            position: relative;
+            height: 620px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+        }
+
+        /* Left panel: text */
+        .hero-left {
+            background: var(--ink);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 64px var(--gutter) 64px calc(var(--gutter));
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-left::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -80px;
+            width: 160px;
+            background: var(--ink);
+            clip-path: polygon(0 0, 50% 0, 100% 100%, 0 100%);
+            z-index: 3;
+        }
+
+        .hero-tag {
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-tag::before {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 1.5px;
+            background: var(--amber);
+            flex-shrink: 0;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(34px, 3.8vw, 52px);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.12;
+            letter-spacing: -0.01em;
+            max-width: 480px;
+            position: relative;
+            z-index: 4;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--amber);
+        }
+
+        .hero-sub {
+            font-size: 15px;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .55);
+            margin-top: 20px;
+            max-width: 400px;
+            font-weight: 300;
+            position: relative;
+            z-index: 4;
+        }
+
+        .hero-scroll {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .35);
+            position: relative;
+            z-index: 4;
+        }
+
+        .hero-scroll-line {
+            width: 40px;
+            height: 1px;
+            background: rgba(255, 255, 255, .2);
+        }
+
+        /* Right panel: photo */
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-photo {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(100deg, rgba(14, 14, 14, .3) 0%, transparent 60%),
+                url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&q=85') center/cover no-repeat;
+        }
+
+        /* Red accent bar */
+        .hero-accent {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--red);
+            z-index: 10;
+        }
+
+        /* ─── OVERVIEW STRIP ───────────────────────────────── */
+        /* McKinsey-style: key metrics in a horizontal band */
+        .metrics-strip {
+            border-bottom: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .metric-cell {
+            padding: 36px 40px;
+            border-right: 1px solid var(--line);
+        }
+
+        .metric-cell:last-child {
+            border-right: none;
+        }
+
+        .metric-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--red);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .metric-unit {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .metric-label {
+            font-size: 12.5px;
+            color: var(--ink-60);
+            margin-top: 8px;
+            line-height: 1.45;
+            max-width: 160px;
+        }
+
+        /* ─── MAIN CONTENT BODY ────────────────────────────── */
+        /* Oliver Wyman / McKinsey two-column editorial */
+        .content-wrap {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 var(--gutter);
+        }
+
+        /* ─── INTRO EDITORIAL ──────────────────────────────── */
+        .editorial {
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+            gap: 80px;
+            align-items: start;
+            padding: 88px 0 80px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .editorial-left {}
+
+        .section-label {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 20px;
+        }
+
+        .editorial-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(26px, 2.8vw, 38px);
+            font-weight: 700;
+            line-height: 1.18;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+        }
+
+        .editorial-right {
+            padding-top: 6px;
+        }
+
+        .editorial-body {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+            font-weight: 300;
+        }
+
+        .editorial-body p+p {
+            margin-top: 18px;
+        }
+
+        .editorial-pullquote {
+            margin-top: 36px;
+            padding: 28px 32px;
+            background: var(--fog);
+            border-left: 3px solid var(--red);
+        }
+
+        .editorial-pullquote p {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--ink);
+        }
+
+        .editorial-pullquote cite {
+            display: block;
+            margin-top: 12px;
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-60);
+            font-style: normal;
+        }
+
+        /* ─── CAPABILITIES — Accenture ecosystem grid ──────── */
+        .capabilities-section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .cap-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 48px;
+        }
+
+        .cap-header-right a {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--red);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 0.03em;
+            transition: gap .2s;
+        }
+
+        .cap-header-right a:hover {
+            gap: 10px;
+        }
+
+        .cap-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-top: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        /* Accenture-style hover-reveal grid */
+        .cap-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+        }
+
+        .cap-item {
+            background: #fff;
+            padding: 36px 40px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            cursor: pointer;
+            transition: background .2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cap-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--red);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform .25s ease;
+        }
+
+        .cap-item:hover {
+            background: var(--fog);
+        }
+
+        .cap-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .cap-item:hover .cap-arrow {
+            transform: translateX(5px);
+        }
+
+        .cap-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--fog);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background .2s;
+        }
+
+        .cap-item:hover .cap-icon {
+            background: var(--red);
+            color: #fff;
+        }
+
+        .cap-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .cap-item:hover .cap-icon svg {
+            stroke: #fff;
+        }
+
+        .cap-text {
+            flex: 1;
+        }
+
+        .cap-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+
+        .cap-desc {
+            font-size: 13px;
+            color: var(--ink-60);
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+
+        .cap-arrow {
+            color: var(--ink-30);
+            flex-shrink: 0;
+            transition: transform .25s ease;
+        }
+
+        /* ─── APPROACH — BCG numbered pillars ──────────────── */
+        .approach-section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .approach-left {}
+
+        .approach-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.2;
+            margin-top: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .approach-right {}
+
+        .pillar {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 24px;
+            padding: 32px 0;
+            border-top: 1px solid var(--line);
+            align-items: start;
+        }
+
+        .pillar:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .pillar-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--red);
+            padding-top: 3px;
+        }
+
+        .pillar-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .pillar-body {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--ink-60);
+            font-weight: 300;
+        }
+
+        /* ─── INSIGHT CARDS — Oliver Wyman editorial ───────── */
+        .insights-section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .insight-grid {
+            margin-top: 48px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 24px;
+        }
+
+        .insight-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--fog);
+            transition: background .2s;
+        }
+
+        .insight-card:hover {
+            background: #EEECEA;
+        }
+
+        .insight-thumb {
+            aspect-ratio: 16/9;
+            background: #ddd;
+            overflow: hidden;
+        }
+
+        .insight-thumb-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(.2);
+            transition: transform .4s ease;
+        }
+
+        .insight-card:hover .insight-thumb-img {
+            transform: scale(1.04);
+        }
+
+        .insight-body {
+            padding: 24px 28px 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .insight-tag {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+
+        .insight-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.35;
+            flex: 1;
+        }
+
+        .insight-card:nth-child(1) .insight-title {
+            font-size: 20px;
+        }
+
+        .insight-meta {
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--ink-60);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .insight-meta-dot {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: var(--ink-30);
+        }
+
+        .insight-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--red);
+            text-transform: uppercase;
+            transition: gap .2s;
+        }
+
+        .insight-card:hover .insight-link {
+            gap: 10px;
+        }
+
+        /* ─── EXPERTS — Deloitte people grid ───────────────── */
+        .experts-section {
+            padding: 80px 0;
+            background: var(--ink);
+        }
+
+        .experts-inner {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 var(--gutter);
+        }
+
+        .experts-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 48px;
+        }
+
+        .experts-label {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-bottom: 10px;
+        }
+
+        .experts-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+
+        .experts-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .exp-nav-btn {
+            width: 42px;
+            height: 42px;
+            border: 1.5px solid rgba(255, 255, 255, .15);
+            border-radius: 50%;
+            background: none;
+            cursor: pointer;
+            color: rgba(255, 255, 255, .5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color .2s, color .2s;
+        }
+
+        .exp-nav-btn:hover {
+            border-color: var(--red);
+            color: #fff;
+        }
+
+        .experts-rail {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        .experts-rail::-webkit-scrollbar {
+            display: none;
+        }
+
+        .expert-card {
+            flex: 0 0 260px;
+            scroll-snap-align: start;
+            background: #1A1A1A;
+        }
+
+        .expert-photo {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: #222;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .expert-photo-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, #252525 0%, #1a1a1a 100%);
+        }
+
+        .expert-photo-icon {
+            position: relative;
+            z-index: 1;
+            opacity: .15;
+        }
+
+        .expert-info {
+            padding: 20px 24px 24px;
+            border-top: 2px solid var(--red);
+        }
+
+        .expert-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+
+        .expert-role {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .38);
+            margin-top: 5px;
+            font-weight: 300;
+        }
+
+        .expert-linkedin {
+            margin-top: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .25);
+            transition: color .2s;
+        }
+
+        .expert-card:hover .expert-linkedin {
+            color: var(--amber);
+        }
+
+        /* ─── CTA DUALBLOCK ────────────────────────────────── */
+        .cta-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .cta-panel {
+            padding: 72px var(--gutter);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 300px;
+        }
+
+        .cta-panel:first-child {
+            background: var(--red);
+        }
+
+        .cta-panel:last-child {
+            background: #1C1C1C;
+        }
+
+        .cta-eyebrow {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .38);
+            margin-bottom: 16px;
+        }
+
+        .cta-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        .cta-btn {
+            margin-top: 36px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 28px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            border-radius: 3px;
+            transition: transform .2s, box-shadow .2s;
+            align-self: flex-start;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, .3);
+        }
+
+        .cta-panel:first-child .cta-btn {
+            background: #fff;
+            color: var(--red);
+        }
+
+        .cta-panel:last-child .cta-btn {
+            background: var(--amber);
+            color: #fff;
+        }
+
+        /* ─── FOOTER ───────────────────────────────────────── */
+        footer {
+            background: var(--fog);
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-top {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 64px var(--gutter) 48px;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr;
+            gap: 48px;
+        }
+
+        .footer-brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .footer-brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink);
+        }
+
+        .footer-tagline {
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: var(--ink-60);
+            max-width: 240px;
+            font-weight: 300;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .soc-btn {
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid var(--line);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-60);
+            transition: border-color .2s, color .2s, background .2s;
+        }
+
+        .soc-btn:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .footer-col-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink);
+            margin-bottom: 20px;
+        }
+
+        .footer-list {
+            list-style: none;
+        }
+
+        .footer-list li+li {
+            margin-top: 10px;
+        }
+
+        .footer-list a {
+            font-size: 13.5px;
+            color: var(--ink-60);
+            font-weight: 300;
+            transition: color .15s;
+        }
+
+        .footer-list a:hover {
+            color: var(--red);
+        }
+
+        .footer-contact-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--ink-60);
+            font-weight: 300;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .footer-contact-row svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+            color: var(--red);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--line);
+            padding: 20px var(--gutter);
+            max-width: var(--max);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--ink-60);
+        }
+
+        /* ─── WHATSAPP FLOAT ───────────────────────────────── */
+        .wa-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            width: 54px;
+            height: 54px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, .45);
+            transition: transform .2s;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.08);
+        }
+
+        /* ─── REVEAL ───────────────────────────────────────── */
+        [data-r] {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .55s ease, transform .55s ease;
+        }
+
+        [data-r].on {
+            opacity: 1;
+            transform: none;
+        }
+
+        [data-rd="1"] {
+            transition-delay: .08s;
+        }
+
+        [data-rd="2"] {
+            transition-delay: .16s;
+        }
+
+        [data-rd="3"] {
+            transition-delay: .24s;
+        }
+
+        [data-rd="4"] {
+            transition-delay: .32s;
+        }
+
+        /* ─── RESPONSIVE ───────────────────────────────────── */
+        @media (max-width: 1024px) {
+            :root {
+                --gutter: 40px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .hero-left {
+                padding: 64px 40px;
+            }
+
+            .hero-left::after {
+                display: none;
+            }
+
+            .hero-right {
+                height: 320px;
+            }
+
+            .metrics-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .editorial {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .approach-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .insight-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .insight-grid .insight-card:nth-child(3) {
+                display: none;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+
+            .cta-block {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-panel {
+                padding: 56px 40px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --gutter: 24px;
+            }
+
+            nav {
+                padding: 0 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .metrics-strip {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cap-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .insight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .insight-grid .insight-card:nth-child(3) {
+                display: flex;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .hero-title {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <div class="topbar-flags">
+            <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg">
+                <rect width="22" height="16" fill="#B22234" />
+                <rect y="1.23" width="22" height="1.23" fill="#fff" />
+                <rect y="3.69" width="22" height="1.23" fill="#fff" />
+                <rect y="6.15" width="22" height="1.23" fill="#fff" />
+                <rect y="8.62" width="22" height="1.23" fill="#fff" />
+                <rect y="11.08" width="22" height="1.23" fill="#fff" />
+                <rect y="13.54" width="22" height="1.23" fill="#fff" />
+                <rect width="8.8" height="8.62" fill="#3C3B6E" />
+            </svg>
+            <svg width="22" height="16" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg">
+                <rect width="22" height="5.33" fill="#CE1126" />
+                <rect y="5.33" width="22" height="5.34" fill="#FFFFFF" />
+                <rect y="10.67" width="22" height="5.33" fill="#CE1126" />
+            </svg>
+        </div>
+        <a href="#" class="topbar-cta">Join Our Team <span>›</span></a>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#" class="nav-brand">
+            <!-- Hexagon SVG logo -->
+            <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 4L40 13.5V32.5L23 42L6 32.5V13.5L23 4Z" stroke="white" stroke-width="1.8" />
+                <path d="M23 9L37 17.5V30.5L23 39L9 30.5V17.5L23 9Z" stroke="rgba(255,255,255,0.35)" stroke-width="1" />
+                <text x="50%" y="53%" dominant-baseline="middle" text-anchor="middle" fill="white"
+                    font-family="Playfair Display, serif" font-weight="800" font-size="9" letter-spacing="0">PCI</text>
+            </svg>
+            <span class="nav-brand-name">Quality</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#" class="active">Industries <span class="chevron">▾</span></a></li>
+            <li><a href="#">Capabilities <span class="chevron">▾</span></a></li>
+            <li><a href="#">Publication <span class="chevron">▾</span></a></li>
+            <li><a href="#">Our Expert</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+
+        <div class="nav-search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"
+                stroke-linecap="round">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+            </svg>
+            <input type="text" placeholder="Search …">
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="#">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="#">Industries</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Resource &amp; Energy</span>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-left">
+            <p class="hero-tag">Industries / Resource &amp; Energy</p>
+            <h1 class="hero-title">
+                Securing energy infrastructure for a <em>smarter</em> tomorrow.
+            </h1>
+            <p class="hero-sub">
+                Advisory, audit, and cybersecurity services built for the specific demands of oil &amp; gas, utilities,
+                and renewable energy operators.
+            </p>
+            <div class="hero-scroll">
+                <span class="hero-scroll-line"></span>
+                Scroll to explore
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-photo"></div>
+        </div>
+        <div class="hero-accent"></div>
+    </section>
+
+    <!-- METRICS STRIP -->
+    <div class="metrics-strip" data-r>
+        <div class="metric-cell">
+            <div class="metric-num">15<span class="metric-unit">+</span></div>
+            <div class="metric-label">Years serving the energy &amp; resource sector</div>
+        </div>
+        <div class="metric-cell">
+            <div class="metric-num">200<span class="metric-unit">+</span></div>
+            <div class="metric-label">Audits and assessments completed</div>
+        </div>
+        <div class="metric-cell">
+            <div class="metric-num">ISO</div>
+            <div class="metric-label">27001 &amp; 9001 certified practice across all engagements</div>
+        </div>
+        <div class="metric-cell">
+            <div class="metric-num">4</div>
+            <div class="metric-label">Core capability pillars tailored for energy operators</div>
+        </div>
+    </div>
+
+    <!-- EDITORIAL INTRO -->
+    <div class="content-wrap">
+        <div class="editorial">
+            <div class="editorial-left" data-r>
+                <p class="section-label">Our Perspective</p>
+                <h2 class="editorial-headline">
+                    Power your sustainability goals with intelligent, secure digital solutions.
+                </h2>
+            </div>
+            <div class="editorial-right" data-r data-rd="2">
+                <div class="editorial-body">
+                    <p>The energy and natural resources sectors are transforming through innovation, efficiency, and
+                        sustainability imperatives. Our Resources &amp; Energy advisory supports your journey toward
+                        digital excellence by leveraging automation, data analytics, and advanced cybersecurity
+                        frameworks.</p>
+                    <p>We assist organizations in enhancing operational safety, ensuring regulatory compliance, and
+                        driving sustainable energy management practices — empowering your business to meet global energy
+                        demands responsibly and securely.</p>
+                </div>
+                <div class="editorial-pullquote">
+                    <p>"The convergence of operational technology and IT creates both opportunity and risk —
+                        organizations that address this proactively will define the next era of energy."</p>
+                    <cite>— PCI Quality, Resource &amp; Energy Practice</cite>
+                </div>
+            </div>
+        </div>
+
+        <!-- CAPABILITIES -->
+        <div class="capabilities-section">
+            <div class="cap-header" data-r>
+                <div>
+                    <p class="section-label">What We Offer</p>
+                    <h2 class="cap-heading">Relevant Capabilities</h2>
+                </div>
+                <div class="cap-header-right">
+                    <a href="#">View All Capabilities
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="cap-grid">
+                <div class="cap-item" data-r>
+                    <div class="cap-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <path d="M8 21h8M12 17v4" />
+                        </svg>
+                    </div>
+                    <div class="cap-text">
+                        <div class="cap-name">IT Consulting</div>
+                        <div class="cap-desc">Strategic technology advisory aligned to energy sector needs</div>
+                    </div>
+                    <div class="cap-arrow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="cap-item" data-r data-rd="1">
+                    <div class="cap-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                    <div class="cap-text">
+                        <div class="cap-name">Cybersecurity</div>
+                        <div class="cap-desc">OT/IT security for critical infrastructure and energy assets</div>
+                    </div>
+                    <div class="cap-arrow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="cap-item" data-r data-rd="2">
+                    <div class="cap-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                        </svg>
+                    </div>
+                    <div class="cap-text">
+                        <div class="cap-name">IT Audit</div>
+                        <div class="cap-desc">Compliance and risk audits against ISO, NERC, and industry standards</div>
+                    </div>
+                    <div class="cap-arrow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="cap-item" data-r data-rd="3">
+                    <div class="cap-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3" />
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07" />
+                        </svg>
+                    </div>
+                    <div class="cap-text">
+                        <div class="cap-name">Technology Solution</div>
+                        <div class="cap-desc">End-to-end digital transformation for energy operations</div>
+                    </div>
+                    <div class="cap-arrow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- APPROACH -->
+        <div class="approach-section">
+            <div class="approach-grid">
+                <div class="approach-left" data-r>
+                    <p class="section-label">How We Work</p>
+                    <h2 class="approach-heading">Three principles that guide every energy engagement.</h2>
+                </div>
+                <div class="approach-right">
+                    <div class="pillar" data-r data-rd="1">
+                        <div class="pillar-num">01</div>
+                        <div>
+                            <div class="pillar-title">Operational Safety First</div>
+                            <p class="pillar-body">Every engagement starts with a rigorous safety posture review. We map
+                                your OT/IT landscape and identify risks before they become incidents — in the field or
+                                in the cloud. No recommendation leaves our team without an operational impact
+                                assessment.</p>
+                        </div>
+                    </div>
+                    <div class="pillar" data-r data-rd="2">
+                        <div class="pillar-num">02</div>
+                        <div>
+                            <div class="pillar-title">Regulatory Confidence</div>
+                            <p class="pillar-body">The energy sector operates under some of the strictest regulations
+                                globally. We translate complex frameworks — ISO 27001, NERC CIP, SKK Migas — into clear,
+                                auditable action plans your team can own and defend during any inspection.</p>
+                        </div>
+                    </div>
+                    <div class="pillar" data-r data-rd="3">
+                        <div class="pillar-num">03</div>
+                        <div>
+                            <div class="pillar-title">Built for Resilience</div>
+                            <p class="pillar-body">Critical infrastructure cannot afford downtime. Our solutions are
+                                designed for high-availability environments — from upstream oil &amp; gas to renewable
+                                generation — with business continuity and disaster recovery planning embedded from day
+                                one.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INSIGHTS — Oliver Wyman editorial cards -->
+        <div class="insights-section">
+            <div class="cap-header" data-r>
+                <div>
+                    <p class="section-label">Thought Leadership</p>
+                    <h2 class="cap-heading">Our Insight</h2>
+                </div>
+                <div class="cap-header-right">
+                    <a href="#">Discover More
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="insight-grid">
+                <a href="#" class="insight-card" data-r>
+                    <div class="insight-thumb">
+                        <img class="insight-thumb-img"
+                            src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80"
+                            alt="Renewable Energy" loading="lazy">
+                    </div>
+                    <div class="insight-body">
+                        <div class="insight-tag">Energy Transition</div>
+                        <div class="insight-title">Why renewable energy operators must rethink their cybersecurity
+                            posture in 2025</div>
+                        <div class="insight-meta">
+                            <span>12 min read</span>
+                            <span class="insight-meta-dot"></span>
+                            <span>June 2025</span>
+                        </div>
+                        <span class="insight-link">
+                            Read Article
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="#" class="insight-card" data-r data-rd="1">
+                    <div class="insight-thumb">
+                        <img class="insight-thumb-img"
+                            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80"
+                            alt="Oil and Gas" loading="lazy">
+                    </div>
+                    <div class="insight-body">
+                        <div class="insight-tag">Oil &amp; Gas</div>
+                        <div class="insight-title">OT/IT convergence: bridging the gap in upstream operations</div>
+                        <div class="insight-meta">
+                            <span>8 min read</span>
+                            <span class="insight-meta-dot"></span>
+                            <span>May 2025</span>
+                        </div>
+                        <span class="insight-link">
+                            Read Article
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="#" class="insight-card" data-r data-rd="2">
+                    <div class="insight-thumb">
+                        <img class="insight-thumb-img"
+                            src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80"
+                            alt="Compliance" loading="lazy">
+                    </div>
+                    <div class="insight-body">
+                        <div class="insight-tag">Compliance</div>
+                        <div class="insight-title">ISO 27001 in energy: a practical implementation roadmap</div>
+                        <div class="insight-meta">
+                            <span>6 min read</span>
+                            <span class="insight-meta-dot"></span>
+                            <span>Apr 2025</span>
+                        </div>
+                        <span class="insight-link">
+                            Read Article
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div><!-- /content-wrap -->
+
+    <!-- EXPERTS -->
+    <section class="experts-section">
+        <div class="experts-inner">
+            <div class="experts-header" data-r>
+                <div>
+                    <p class="experts-label">The People Behind the Work</p>
+                    <h2 class="experts-heading">Our Expert</h2>
+                </div>
+                <div class="experts-nav">
+                    <button class="exp-nav-btn" id="prevEx" aria-label="Prev">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round">
+                            <path d="M19 12H5M12 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button class="exp-nav-btn" id="nextEx" aria-label="Next">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="experts-rail" id="expRail">
+                <!-- Card template repeated -->
+                <div class="expert-card">
+                    <div class="expert-photo">
+                        <div class="expert-photo-bg"></div>
+                        <svg class="expert-photo-icon" width="72" height="72" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="0.8">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <div class="expert-info">
+                        <div class="expert-name">Novar Kurniawan</div>
+                        <div class="expert-role">IT Consulting Lead</div>
+                        <span class="expert-linkedin">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                            LinkedIn
+                        </span>
+                    </div>
+                </div>
+
+                <div class="expert-card">
+                    <div class="expert-photo">
+                        <div class="expert-photo-bg"></div>
+                        <svg class="expert-photo-icon" width="72" height="72" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="0.8">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <div class="expert-info">
+                        <div class="expert-name">Rizky Muhammad</div>
+                        <div class="expert-role">Cybersecurity Specialist</div>
+                        <span class="expert-linkedin">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                            LinkedIn
+                        </span>
+                    </div>
+                </div>
+
+                <div class="expert-card">
+                    <div class="expert-photo">
+                        <div class="expert-photo-bg"></div>
+                        <svg class="expert-photo-icon" width="72" height="72" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="0.8">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <div class="expert-info">
+                        <div class="expert-name">Tus Maemunah</div>
+                        <div class="expert-role">IT Audit Practitioner</div>
+                        <span class="expert-linkedin">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                            LinkedIn
+                        </span>
+                    </div>
+                </div>
+
+                <div class="expert-card">
+                    <div class="expert-photo">
+                        <div class="expert-photo-bg"></div>
+                        <svg class="expert-photo-icon" width="72" height="72" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="0.8">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <div class="expert-info">
+                        <div class="expert-name">Raka Raditya</div>
+                        <div class="expert-role">Solutions Architect</div>
+                        <span class="expert-linkedin">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                            LinkedIn
+                        </span>
+                    </div>
+                </div>
+
+                <div class="expert-card">
+                    <div class="expert-photo">
+                        <div class="expert-photo-bg"></div>
+                        <svg class="expert-photo-icon" width="72" height="72" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="0.8">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <div class="expert-info">
+                        <div class="expert-name">Senior Associate</div>
+                        <div class="expert-role">Energy &amp; Resource Advisory</div>
+                        <span class="expert-linkedin">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                            LinkedIn
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BLOCK -->
+    <div class="cta-block">
+        <div class="cta-panel">
+            <div>
+                <p class="cta-eyebrow">Get in Touch</p>
+                <h3 class="cta-heading">Need assistance with your energy sector project?</h3>
+            </div>
+            <a href="#" class="cta-btn">
+                Contact Us
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+        <div class="cta-panel">
+            <div>
+                <p class="cta-eyebrow">Knowledge Hub</p>
+                <h3 class="cta-heading">Explore our publications &amp; industry insights.</h3>
+            </div>
+            <a href="#" class="cta-btn">
+                Discover More
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+            <div>
+                <div class="footer-brand-logo">
+                    <svg width="36" height="36" viewBox="0 0 46 46" fill="none">
+                        <path d="M23 4L40 13.5V32.5L23 42L6 32.5V13.5L23 4Z" stroke="#C8102E" stroke-width="1.8" />
+                        <text x="50%" y="53%" dominant-baseline="middle" text-anchor="middle" fill="#C8102E"
+                            font-family="Playfair Display,serif" font-weight="800" font-size="9">PCI</text>
+                    </svg>
+                    <span class="footer-brand-name">Quality</span>
+                </div>
+                <p class="footer-tagline">A trusted IT consulting firm specializing in IT governance, information
+                    security, and privacy across Indonesia and the region.</p>
+                <div class="footer-socials">
+                    <a href="#" class="soc-btn" aria-label="LinkedIn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
+                    <a href="#" class="soc-btn" aria-label="Instagram">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                        </svg>
+                    </a>
+                    <a href="#" class="soc-btn" aria-label="YouTube">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96C1 8.12 1 12 1 12s0 3.88.46 5.58a2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95C23 15.88 23 12 23 12s0-3.88-.46-5.58z" />
+                            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor"
+                                stroke="none" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <p class="footer-col-title">Contact Us</p>
+                <div class="footer-contact-row">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.85-.85a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.71 2.03z" />
+                    </svg>
+                    +62 811-812-9496
+                </div>
+                <div class="footer-contact-row">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    info@pci-quality.com
+                </div>
+                <div class="footer-contact-row">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    Recapital Building Lt. 8, Jl. Adityawarman No. 55, Kebayoran Baru, Jakarta Selatan 12160
+                </div>
+            </div>
+
+            <div>
+                <p class="footer-col-title">Hot Links</p>
+                <ul class="footer-list">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Story About Us</a></li>
+                    <li><a href="#">Our Works</a></li>
+                    <li><a href="#">Service We Provide</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p class="footer-col-title">Industries</p>
+                <ul class="footer-list">
+                    <li><a href="#" style="color:#C8102E;font-weight:500;">Resource &amp; Energy</a></li>
+                    <li><a href="#">Financial Services</a></li>
+                    <li><a href="#">Healthcare</a></li>
+                    <li><a href="#">Government</a></li>
+                    <li><a href="#">Technology</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2025 PCI Quality. All rights reserved.</span>
+            <span>Privacy Policy · Cookie Policy (EU)</span>
+        </div>
+    </footer>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/628118129496" class="wa-float" aria-label="Chat on WhatsApp">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+        </svg>
+    </a>
+
+    <script>
+        // ── Scroll reveal
+        const items = document.querySelectorAll('[data-r]');
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
+            });
+        }, { threshold: 0.1 });
+        items.forEach(el => obs.observe(el));
+
+        // ── Expert carousel
+        const rail = document.getElementById('expRail');
+        const step = 276; // card + gap
+        document.getElementById('nextEx').onclick = () => rail.scrollBy({ left: step, behavior: 'smooth' });
+        document.getElementById('prevEx').onclick = () => rail.scrollBy({ left: -step, behavior: 'smooth' });
+
+        // ── Capability icon hover color fix for SVG strokes
+        document.querySelectorAll('.cap-item').forEach(item => {
+            const icon = item.querySelector('.cap-icon svg');
+            item.addEventListener('mouseenter', () => { if (icon) icon.style.stroke = '#fff'; });
+            item.addEventListener('mouseleave', () => { if (icon) icon.style.stroke = '#555'; });
+        });
+    </script>
+</body>
+
+</html>

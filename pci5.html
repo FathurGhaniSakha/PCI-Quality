@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resources & Energy — PCI Advisory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --red: #CC1520;
+            --red-dim: #A81019;
+            --red-tint: #FDF2F2;
+            --ink: #111111;
+            --ink-2: #2E2E2E;
+            --muted: #717171;
+            --muted-2: #9A9A9A;
+            --border: #E3E3E3;
+            --border-2: #CACACA;
+            --surface: #F7F7F5;
+            --surface-2: #F0EFEC;
+            --white: #ffffff;
+            --font-d: 'EB Garamond', Georgia, serif;
+            --font-b: 'Inter', system-ui, sans-serif;
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--ink);
+            font-family: var(--font-b);
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── TOPBAR ─── */
+        .topbar {
+            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .topbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 48px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .topbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .topbar-logo-mark {
+            width: 30px;
+            height: 30px;
+            background: var(--red);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-b);
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .topbar-logo-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: 0.1px;
+        }
+
+        .topbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .topbar-nav a {
+            font-size: 13px;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+            letter-spacing: 0.1px;
+        }
+
+        .topbar-nav a:hover {
+            color: var(--ink);
+        }
+
+        .topbar-nav a.active {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .topbar-contact {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--red);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .topbar-contact:hover {
+            border-color: var(--red);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 62px 48px 0;
+        }
+
+        .hero-kicker {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 36px;
+        }
+
+        .hero-kicker-rule {
+            width: 28px;
+            height: 1px;
+            background: var(--red);
+        }
+
+        .hero-kicker-text {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--red);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 64px;
+            align-items: start;
+            padding-bottom: 72px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-title {
+            font-family: var(--font-d);
+            font-size: clamp(48px, 5.5vw, 76px);
+            font-weight: 500;
+            line-height: 1.04;
+            letter-spacing: -0.5px;
+            color: var(--ink);
+            margin-bottom: 0;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .hero-right {
+            padding-top: 6px;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.9;
+            margin-bottom: 36px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .btn-p {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: var(--ink);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            padding: 13px 24px;
+            border-radius: 2px;
+            text-decoration: none;
+            transition: background 0.25s var(--ease), transform 0.2s var(--ease);
+        }
+
+        .btn-p:hover {
+            background: var(--red);
+            transform: translateY(-1px);
+        }
+
+        .btn-p svg {
+            transition: transform 0.25s var(--ease);
+        }
+
+        .btn-p:hover svg {
+            transform: translateX(4px);
+        }
+
+        .btn-s {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--ink);
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.1px;
+            padding-bottom: 2px;
+            border-bottom: 1px solid var(--border-2);
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .btn-s:hover {
+            color: var(--red);
+            border-color: var(--red);
+        }
+
+        /* Hero credential strip */
+        .hero-creds {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .hero-cred {
+            flex: 1;
+            padding: 14px 18px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .hero-cred:last-child {
+            border-right: none;
+        }
+
+        .hero-cred-val {
+            font-family: var(--font-d);
+            font-size: 26px;
+            font-weight: 500;
+            color: var(--ink);
+            display: block;
+            line-height: 1;
+        }
+
+        .hero-cred-lbl {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 4px;
+            display: block;
+            letter-spacing: 0.2px;
+        }
+
+        /* Hero image */
+        .hero-image-wrap {
+            position: relative;
+            margin-top: 0;
+        }
+
+        .hero-image-frame {
+            width: 100%;
+            aspect-ratio: 16/11;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .hero-image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(15%);
+            transition: transform 8s ease;
+        }
+
+        .hero-image-frame:hover img {
+            transform: scale(1.03);
+        }
+
+        .hero-img-label {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            background: var(--red);
+            color: white;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+        }
+
+        .hero-pullquote {
+            margin-top: 24px;
+            padding: 20px 24px;
+            border-left: 2px solid var(--red);
+            background: var(--surface);
+        }
+
+        .hero-pullquote p {
+            font-family: var(--font-d);
+            font-size: 17px;
+            font-style: italic;
+            color: var(--ink-2);
+            line-height: 1.55;
+            margin-bottom: 8px;
+        }
+
+        .hero-pullquote cite {
+            font-size: 11px;
+            font-style: normal;
+            color: var(--muted);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        /* ─── METRICS ─── */
+        .metrics-belt {
+            background: var(--ink);
+        }
+
+        .metrics-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .metric {
+            padding: 40px 40px;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric:last-child {
+            border-right: none;
+        }
+
+        .metric::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 0;
+            background: var(--red);
+            transition: height 0.5s var(--ease);
+        }
+
+        .metric:hover::before {
+            height: 100%;
+        }
+
+        .metric-n {
+            font-family: var(--font-d);
+            font-size: 48px;
+            font-weight: 500;
+            color: #ffffff;
+            line-height: 1;
+            display: block;
+        }
+
+        .metric-n sup {
+            font-size: 24px;
+            vertical-align: super;
+            line-height: 0;
+        }
+
+        .metric-l {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.42);
+            display: block;
+            margin-top: 8px;
+            letter-spacing: 0.2px;
+        }
+
+        /* ─── CAPABILITIES ─── */
+        .capabilities {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 88px 48px;
+        }
+
+        .sec-head {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            align-items: end;
+        }
+
+        .sec-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--red);
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .sec-head-l h2 {
+            font-family: var(--font-d);
+            font-size: clamp(34px, 3.5vw, 52px);
+            font-weight: 500;
+            line-height: 1.06;
+            letter-spacing: -0.3px;
+            color: var(--ink);
+        }
+
+        .sec-head-r p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.9;
+        }
+
+        /* capability rows */
+        .cap-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cap-row {
+            display: grid;
+            grid-template-columns: 64px 1fr 1fr 40px;
+            gap: 0 40px;
+            align-items: start;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            transition: background 0.2s;
+        }
+
+        .cap-row::before {
+            content: '';
+            position: absolute;
+            left: -48px;
+            right: -48px;
+            top: 0;
+            bottom: 0;
+            background: var(--surface);
+            opacity: 0;
+            z-index: 0;
+            transition: opacity 0.25s;
+        }
+
+        .cap-row:hover::before {
+            opacity: 1;
+        }
+
+        .cap-row>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cap-num {
+            font-family: var(--font-d);
+            font-size: 13px;
+            color: var(--muted-2);
+            font-style: italic;
+            padding-top: 5px;
+            transition: color 0.2s;
+        }
+
+        .cap-row:hover .cap-num {
+            color: var(--red);
+        }
+
+        .cap-title {
+            font-family: var(--font-d);
+            font-size: 30px;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.15;
+            transition: color 0.25s;
+        }
+
+        .cap-row:hover .cap-title {
+            color: var(--red);
+        }
+
+        .cap-body {}
+
+        .cap-desc {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.85;
+            margin-bottom: 16px;
+        }
+
+        .cap-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .cap-tag {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 2px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .cap-row:hover .cap-tag {
+            border-color: var(--border-2);
+            color: var(--ink-2);
+        }
+
+        .cap-arr {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: var(--muted);
+            transition: all 0.25s var(--ease);
+            margin-top: 4px;
+        }
+
+        .cap-row:hover .cap-arr {
+            background: var(--red);
+            border-color: var(--red);
+            color: white;
+            transform: rotate(45deg) scale(1.08);
+        }
+
+        /* ─── INSIGHT STRIP ─── */
+        .insights {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .insights-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 48px;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .insights-label-col {}
+
+        .insights-label-col .sec-label {
+            margin-bottom: 20px;
+        }
+
+        .insights-label-col h3 {
+            font-family: var(--font-d);
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.25;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-left: 1px solid var(--border);
+        }
+
+        .insight-card {
+            padding: 0 40px 36px;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .insight-card:nth-child(2) {
+            border-right: none;
+        }
+
+        .insight-card:nth-child(3) {
+            border-bottom: none;
+        }
+
+        .insight-card:nth-child(4) {
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .insight-card {
+            padding-top: 36px;
+        }
+
+        .insight-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--red-tint);
+            border: 1px solid rgba(204, 21, 32, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .insight-icon svg {
+            color: var(--red);
+        }
+
+        .insight-h {
+            font-family: var(--font-d);
+            font-size: 19px;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.35;
+            margin-bottom: 10px;
+        }
+
+        .insight-p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* ─── DARK CALLOUT ─── */
+        .callout {
+            background: var(--ink);
+            color: white;
+        }
+
+        .callout-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 48px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .callout h2 {
+            font-family: var(--font-d);
+            font-size: clamp(32px, 3.5vw, 48px);
+            font-weight: 500;
+            line-height: 1.1;
+            color: #F5F2EE;
+            max-width: 640px;
+        }
+
+        .callout h2 em {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .callout-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: flex-start;
+            flex-shrink: 0;
+        }
+
+        .btn-light {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: white;
+            color: var(--ink);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            padding: 13px 24px;
+            border-radius: 2px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s, color 0.2s, transform 0.2s var(--ease);
+        }
+
+        .btn-light:hover {
+            background: var(--red);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .btn-ghost:hover {
+            color: white;
+            border-color: white;
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 28px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--ink);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 960px) {
+            .topbar-nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 56px 28px 0;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .metrics-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .metric:nth-child(2) {
+                border-right: none;
+            }
+
+            .metric {
+                padding: 32px 28px;
+            }
+
+            .capabilities {
+                padding: 64px 28px;
+            }
+
+            .sec-head {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .cap-row {
+                grid-template-columns: 48px 1fr auto;
+            }
+
+            .cap-body {
+                grid-column: 2 / 3;
+                margin-top: 12px;
+            }
+
+            .cap-row::before {
+                left: -28px;
+                right: -28px;
+            }
+
+            .insights-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+                border-left: none;
+            }
+
+            .insight-card {
+                border-right: none !important;
+                border-bottom: 1px solid var(--border) !important;
+            }
+
+            .insight-card:last-child {
+                border-bottom: none !important;
+            }
+
+            .callout-inner {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .footer-inner {
+                padding: 24px 28px;
+            }
+
+            .topbar-inner {
+                padding: 0 28px;
+            }
+
+            .hero-creds {
+                flex-wrap: wrap;
+            }
+
+            .callout-inner {
+                padding: 56px 28px;
+            }
+
+            .insights-inner {
+                padding: 64px 28px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .hero-grid {
+                gap: 36px;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cap-row {
+                grid-template-columns: 40px 1fr;
+                padding: 32px 0;
+            }
+
+            .cap-arr {
+                display: none;
+            }
+
+            .metrics-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metric {
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-kicker">
+            <div class="hero-kicker-rule"></div>
+            <span class="hero-kicker-text">Resources &amp; Energy Advisory</span>
+        </div>
+
+        <div class="hero-grid">
+            <!-- Left: title + credentials -->
+            <div>
+                <h1 class="hero-title">
+                    Shaping the<br>
+                    <em>Energy Transition</em><br>
+                    with Precision
+                </h1>
+
+                <div class="hero-creds" style="margin-top: 48px;">
+                    <div class="hero-cred">
+                        <span class="hero-cred-val">18<sup>+</sup></span>
+                        <span class="hero-cred-lbl">Years advisory</span>
+                    </div>
+                    <div class="hero-cred">
+                        <span class="hero-cred-val">60<sup>+</sup></span>
+                        <span class="hero-cred-lbl">Engagements</span>
+                    </div>
+                    <div class="hero-cred">
+                        <span class="hero-cred-val">12</span>
+                        <span class="hero-cred-lbl">Countries</span>
+                    </div>
+                    <div class="hero-cred">
+                        <span class="hero-cred-val">40<sup>+</sup></span>
+                        <span class="hero-cred-lbl">Frameworks</span>
+                    </div>
+                </div>
+                <br><br>
+                <p class="hero-desc">
+                    The energy and natural resources sectors stand at an inflection point.
+                    We work alongside executives and management teams to navigate technology
+                    transformation, operational resilience, and regulatory change—with the
+                    precision that decisions at scale demand.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="https://pci-quality.com" class="btn-p">
+                        Explore Our Work
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                    <a href="https://pci-quality.com" class="btn-s">
+                        Meet our partners
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17 17 7M7 7h10v10" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: desc + CTA + image -->
+            <div class="hero-right">
+
+                <div class="hero-image-wrap">
+                    <div class="hero-image-frame">
+                        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                            alt="Energy infrastructure" />
+                    </div>
+                </div>
+
+                <div class="hero-pullquote">
+                    <p>"The sector's most consequential decisions in the next decade will be defined by the quality of
+                        information available to those making them."</p>
+                    <cite>PCI Energy Practice Lead</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METRICS (dark belt) -->
+    <div class="metrics-belt">
+        <div class="metrics-inner">
+            <div class="metric">
+                <span class="metric-n">18<sup>+</sup></span>
+                <span class="metric-l">Years in energy &amp; resources advisory</span>
+            </div>
+            <div class="metric">
+                <span class="metric-n">60<sup>+</sup></span>
+                <span class="metric-l">Engagements across the value chain</span>
+            </div>
+            <div class="metric">
+                <span class="metric-n">40<sup>+</sup></span>
+                <span class="metric-l">Regulatory frameworks navigated</span>
+            </div>
+            <div class="metric">
+                <span class="metric-n">12</span>
+                <span class="metric-l">Countries across Asia-Pacific</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAPABILITIES -->
+    <section class="capabilities">
+        <div class="sec-head">
+            <div class="sec-head-l">
+                <span class="sec-label">What We Offer</span>
+                <h2>Our Service<br>Capabilities</h2>
+            </div>
+            <div class="sec-head-r">
+                <p>Purpose-built advisory services for organizations at the intersection of energy, technology, and
+                    compliance. Every engagement is led by senior practitioners with direct sector experience—no
+                    junior-led delivery.</p>
+            </div>
+        </div>
+
+        <div class="cap-list">
+
+            <a href="https://pci-quality.com/home/it-consulting/" class="cap-row">
+                <div class="cap-num">01</div>
+                <div class="cap-title">IT Consulting</div>
+                <div class="cap-body">
+                    <p class="cap-desc">We help energy organizations modernize their technology foundations—from
+                        operational technology (OT) integration to enterprise architecture—ensuring systems are fit for
+                        purpose, scalable, and aligned with long-term strategic objectives.</p>
+                    <div class="cap-tags">
+                        <span class="cap-tag">Digital Transformation</span>
+                        <span class="cap-tag">Architecture Review</span>
+                        <span class="cap-tag">OT/IT Convergence</span>
+                    </div>
+                </div>
+                <div class="cap-arr">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+            <a href="https://pci-quality.com/industries/cybersecurity/" class="cap-row">
+                <div class="cap-num">02</div>
+                <div class="cap-title">Cybersecurity</div>
+                <div class="cap-body">
+                    <p class="cap-desc">Critical infrastructure demands a security posture commensurate with its
+                        importance. We design and implement cybersecurity frameworks for energy operators—addressing
+                        threat modeling, incident response, and the unique vulnerabilities of industrial control
+                        systems.</p>
+                    <div class="cap-tags">
+                        <span class="cap-tag">ICS/SCADA Security</span>
+                        <span class="cap-tag">Threat Modeling</span>
+                        <span class="cap-tag">Incident Response</span>
+                    </div>
+                </div>
+                <div class="cap-arr">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+            <a href="https://pci-quality.com/home/it-audit/" class="cap-row">
+                <div class="cap-num">03</div>
+                <div class="cap-title">IT Audit &amp; Assurance</div>
+                <div class="cap-body">
+                    <p class="cap-desc">Rigorous, independent audit services that give boards and regulators the
+                        confidence they require. Our audits examine control environments across information systems,
+                        data governance, and compliance obligations specific to the energy and resources sector.</p>
+                    <div class="cap-tags">
+                        <span class="cap-tag">Regulatory Compliance</span>
+                        <span class="cap-tag">Control Assessment</span>
+                        <span class="cap-tag">Data Governance</span>
+                    </div>
+                </div>
+                <div class="cap-arr">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+            <a href="https://pci-quality.com/home/technology-solutions/" class="cap-row">
+                <div class="cap-num">04</div>
+                <div class="cap-title">Technology Solutions</div>
+                <div class="cap-body">
+                    <p class="cap-desc">From automation and analytics platforms to integrated energy management systems,
+                        we deliver technology solutions that reduce operating costs, improve decision-making, and
+                        support the transition to sustainable energy models—without disrupting ongoing operations.</p>
+                    <div class="cap-tags">
+                        <span class="cap-tag">Process Automation</span>
+                        <span class="cap-tag">Energy Analytics</span>
+                        <span class="cap-tag">System Integration</span>
+                    </div>
+                </div>
+                <div class="cap-arr">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- INSIGHTS -->
+    <section class="insights">
+        <div class="insights-inner">
+            <div class="insights-label-col">
+                <span class="sec-label">Our Perspective</span>
+                <h3>What we believe about the sector's next decade</h3>
+            </div>
+
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                    </div>
+                    <div class="insight-h">OT/IT convergence is the defining opportunity—and vulnerability—of this era
+                    </div>
+                    <p class="insight-p">Organizations treating convergence as only a risk problem will underperform
+                        those who see it as a strategic lever.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                    <div class="insight-h">Regulatory pressure is accelerating—compliance is now a competitive
+                        differentiator</div>
+                    <p class="insight-p">We track regulatory developments across 12 jurisdictions so clients are
+                        positioned ahead of enforcement, not behind it.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 8v4l3 3" />
+                        </svg>
+                    </div>
+                    <div class="insight-h">The quality of information determines the quality of decisions at scale</div>
+                    <p class="insight-p">Data governance is not an IT problem. It is a leadership problem—and one with
+                        compounding consequences if left unaddressed.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <div class="insight-h">Senior-led delivery produces better outcomes—no exceptions</div>
+                    <p class="insight-p">Every PCI engagement is led by a senior partner with direct energy and
+                        resources experience. We bring independent judgment, not vendor relationships.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DARK CALLOUT -->
+    <section class="callout">
+        <div class="callout-inner">
+            <h2>
+                Ready to begin a conversation<br>
+                with a <em>senior partner?</em>
+            </h2>
+            <div class="callout-actions">
+                <a href="https://pci-quality.com" class="btn-light">
+                    Request a Meeting
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="https://pci-quality.com" class="btn-ghost">View all services →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p class="footer-copy">© 2024 PCI Quality Consulting. All rights reserved.</p>
+            <nav class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Contact</a>
+                <a href="https://pci-quality.com">pci-quality.com</a>
+            </nav>
+        </div>
+    </footer>
+
+</body>
+
+</html>

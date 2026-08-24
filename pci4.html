@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resources & Energy — PCI Advisory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --red: #CC1520;
+            --red-muted: rgba(204, 21, 32, 0.07);
+            --ink: #1A1A1A;
+            --ink-2: #3A3A3A;
+            --muted: #6B7280;
+            --border: #E5E5E5;
+            --surface: #FAFAFA;
+            --white: #ffffff;
+
+            --font-display: 'EB Garamond', Georgia, serif;
+            --font-body: 'Inter', system-ui, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--ink);
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── TOPBAR ── */
+        .topbar {
+            border-bottom: 1px solid var(--border);
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .topbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .topbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .topbar-logo-mark {
+            width: 32px;
+            height: 32px;
+            background: var(--red);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .topbar-logo-text {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--ink);
+            letter-spacing: 0.2px;
+        }
+
+        .topbar-breadcrumb {
+            font-size: 13px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .topbar-breadcrumb span {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .topbar-breadcrumb::before {
+            content: '/';
+            color: var(--border);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-left {
+            padding-right: 80px;
+            padding-bottom: 80px;
+            border-right: 1px solid var(--border);
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .hero-eyebrow-line {
+            width: 32px;
+            height: 1.5px;
+            background: var(--red);
+            flex-shrink: 0;
+        }
+
+        .hero-eyebrow-text {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--red);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(44px, 5vw, 68px);
+            font-weight: 500;
+            line-height: 1.08;
+            letter-spacing: -0.5px;
+            color: var(--ink);
+            margin-bottom: 28px;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--ink-2);
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.85;
+            max-width: 440px;
+            margin-bottom: 44px;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--ink);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 13px 26px;
+            border-radius: 2px;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--red);
+        }
+
+        .btn-primary svg {
+            transition: transform 0.2s ease;
+        }
+
+        .btn-primary:hover svg {
+            transform: translateX(3px);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--ink);
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            color: var(--red);
+            border-color: var(--red);
+        }
+
+        /* Hero Right — image + pull quote */
+        .hero-right {
+            padding-left: 80px;
+            padding-bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-image-block {
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            position: relative;
+            background: #D4D0CA;
+        }
+
+        .hero-image-block img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(20%) contrast(1.02);
+        }
+
+        .hero-image-caption {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+            margin-top: 12px;
+        }
+
+        .hero-pull {
+            margin-top: 36px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border);
+        }
+
+        .hero-pull-quote {
+            font-family: var(--font-display);
+            font-size: 21px;
+            font-style: italic;
+            color: var(--ink-2);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .hero-pull-attr {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* ── METRICS ROW ── */
+        .metrics {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .metric-item {
+            padding: 40px;
+            border-right: 1px solid var(--border);
+        }
+
+        .metric-item:last-child {
+            border-right: none;
+        }
+
+        .metric-value {
+            font-family: var(--font-display);
+            font-size: 42px;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .metric-value sup {
+            font-size: 22px;
+            vertical-align: super;
+            line-height: 0;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.3px;
+        }
+
+        /* ── CAPABILITIES ── */
+        .capabilities {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 64px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            align-items: end;
+        }
+
+        .section-header-left h2 {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 3.5vw, 48px);
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.1;
+            letter-spacing: -0.3px;
+        }
+
+        .section-header-right p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.85;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--red);
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        /* Capability rows — editorial list style */
+        .capability-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .capability-item {
+            display: grid;
+            grid-template-columns: 56px 1fr auto;
+            gap: 0 36px;
+            align-items: start;
+            padding: 36px 0;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            transition: background 0.15s;
+        }
+
+        .capability-item::before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            right: -40px;
+            top: 0;
+            bottom: 0;
+            background: var(--surface);
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 0;
+        }
+
+        .capability-item:hover::before {
+            opacity: 1;
+        }
+
+        .capability-item>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cap-number {
+            font-family: var(--font-display);
+            font-size: 13px;
+            color: var(--muted);
+            padding-top: 5px;
+            font-style: italic;
+        }
+
+        .cap-content {}
+
+        .cap-title {
+            font-family: var(--font-display);
+            font-size: 26px;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 10px;
+            line-height: 1.2;
+            transition: color 0.2s;
+        }
+
+        .capability-item:hover .cap-title {
+            color: var(--red);
+        }
+
+        .cap-desc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.75;
+            max-width: 560px;
+        }
+
+        .cap-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .cap-tag {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            padding: 3px 10px;
+        }
+
+        .cap-arrow {
+            padding-top: 6px;
+            color: var(--border);
+            transition: color 0.2s, transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .capability-item:hover .cap-arrow {
+            color: var(--red);
+            transform: translate(3px, -3px);
+        }
+
+        /* ── INSIGHT STRIP ── */
+        .insight-strip {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .insight-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 64px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+        }
+
+        .insight-item {
+            padding: 0 48px 0 0;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            margin-right: 48px;
+        }
+
+        .insight-item:last-child {
+            border-right: none;
+            margin-right: 0;
+            padding-right: 0;
+        }
+
+        .insight-overline {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .insight-headline {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.45;
+            color: #F0EDE8;
+            margin-bottom: 14px;
+        }
+
+        .insight-body {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.7;
+        }
+
+        /* ── CONTACT STRIP ── */
+        .contact-strip {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 64px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-strip-text h3 {
+            font-family: var(--font-display);
+            font-size: 30px;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        .contact-strip-text p {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .contact-strip-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--ink);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 56px 24px 0;
+            }
+
+            .hero-left {
+                border-right: none;
+                padding-right: 0;
+                padding-bottom: 40px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .hero-right {
+                padding-left: 0;
+                padding-top: 40px;
+                padding-bottom: 56px;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metric-item:nth-child(2) {
+                border-right: none;
+            }
+
+            .capabilities {
+                padding: 56px 24px;
+            }
+
+            .section-header {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .insight-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .insight-item {
+                border-right: none;
+                padding-right: 0;
+                margin-right: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding-bottom: 40px;
+            }
+
+            .insight-item:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            .topbar-inner {
+                padding: 0 24px;
+            }
+
+            .insight-inner {
+                padding: 48px 24px;
+            }
+
+            .contact-strip {
+                padding: 48px 24px;
+            }
+
+            .footer-inner {
+                padding: 28px 24px;
+            }
+
+            .capability-item {
+                grid-template-columns: 40px 1fr auto;
+                gap: 0 20px;
+            }
+
+            .capability-item::before {
+                left: -24px;
+                right: -24px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .metrics {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metric-item {
+                padding: 28px 20px;
+            }
+
+            .metric-item:nth-child(2) {
+                border-right: none;
+            }
+
+            .metric-item:nth-child(3) {
+                border-right: 1px solid var(--border);
+            }
+
+            .metric-item:nth-child(4) {
+                border-right: none;
+            }
+
+            .hero-title {
+                font-size: 38px;
+            }
+
+            .section-header-left h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a href="https://pci-quality.com" class="topbar-logo">
+                <div class="topbar-logo-mark">PCI</div>
+                <span class="topbar-logo-text">Quality Consulting</span>
+            </a>
+            <div class="topbar-breadcrumb">
+                <span>Resources &amp; Energy</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="hero-eyebrow">
+                <div class="hero-eyebrow-line"></div>
+                <span class="hero-eyebrow-text">Resources &amp; Energy Advisory</span>
+            </div>
+
+            <h1 class="hero-title">
+                Shaping the<br />
+                <em>Energy Transition</em><br />
+                for Leaders
+            </h1>
+
+            <p class="hero-desc">
+                The energy and natural resources sectors stand at an inflection point. We work
+                alongside executives and management teams to navigate technology transformation,
+                operational resilience, and regulatory change—with the precision that defines
+                decisions at scale.
+            </p>
+
+            <div class="hero-cta-group">
+                <a href="https://pci-quality.com" class="btn-primary">
+                    Explore Our Work
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="https://pci-quality.com" class="btn-secondary">
+                    Contact a Partner
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="hero-image-block">
+                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                    alt="Energy infrastructure" />
+            </div>
+
+
+            <div class="hero-pull">
+                <p class="hero-pull-quote">
+                    "The sector's most consequential decisions in the next decade will be defined
+                    by the quality of information available to those making them."
+                </p>
+                <span class="hero-pull-attr">PCI Energy Practice Lead</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="metrics">
+        <div class="metric-item">
+            <div class="metric-value">18<sup>+</sup></div>
+            <div class="metric-label">Years in energy &amp; resources advisory</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-value">60<sup>+</sup></div>
+            <div class="metric-label">Engagements across the value chain</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-value">40<sup>+</sup></div>
+            <div class="metric-label">Regulatory frameworks navigated</div>
+        </div>
+        <div class="metric-item">
+            <div class="metric-value">12</div>
+            <div class="metric-label">Countries across the Asia-Pacific region</div>
+        </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section class="capabilities">
+        <div class="section-header">
+            <div class="section-header-left">
+                <span class="section-label">What We Offer</span>
+                <h2>Our Service<br />Capabilities</h2>
+            </div>
+            <div class="section-header-right">
+                <p>
+                    Purpose-built advisory services for organizations operating at the intersection
+                    of energy, technology, and compliance. Each engagement is led by senior practitioners
+                    with direct sector experience.
+                </p>
+            </div>
+        </div>
+
+        <div class="capability-list">
+
+            <a href="https://pci-quality.com/home/it-consulting/" class="capability-item">
+                <div class="cap-number">01</div>
+                <div class="cap-content">
+                    <div class="cap-title">IT Consulting</div>
+                    <p class="cap-desc">
+                        We help energy organizations modernize their technology foundations—from
+                        operational technology (OT) integration to enterprise architecture—ensuring
+                        systems are fit for purpose, scalable, and aligned with long-term strategic
+                        objectives.
+                    </p>
+                    <div class="cap-tags">
+                        <span class="cap-tag">Digital Transformation</span>
+                        <span class="cap-tag">Architecture Review</span>
+                        <span class="cap-tag">OT/IT Convergence</span>
+                    </div>
+                </div>
+                <div class="cap-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+            <a href="https://pci-quality.com/industries/cybersecurity/" class="capability-item">
+                <div class="cap-number">02</div>
+                <div class="cap-content">
+                    <div class="cap-title">Cybersecurity</div>
+                    <p class="cap-desc">
+                        Critical infrastructure demands a security posture commensurate with its
+                        importance. We design and implement cybersecurity frameworks for energy
+                        operators—addressing threat modeling, incident response, and the unique
+                        vulnerabilities of industrial control systems.
+                    </p>
+                    <div class="cap-tags">
+                        <span class="cap-tag">ICS/SCADA Security</span>
+                        <span class="cap-tag">Threat Modeling</span>
+                        <span class="cap-tag">Incident Response</span>
+                    </div>
+                </div>
+                <div class="cap-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+            <a href="https://pci-quality.com/home/it-audit/" class="capability-item">
+                <div class="cap-number">03</div>
+                <div class="cap-content">
+                    <div class="cap-title">IT Audit &amp; Assurance</div>
+                    <p class="cap-desc">
+                        Rigorous, independent audit services that give boards and regulators the
+                        confidence they require. Our audits examine control environments across
+                        information systems, data governance, and compliance obligations specific
+                        to the energy and resources sector.
+                    </p>
+                    <div class="cap-tags">
+                        <span class="cap-tag">Regulatory Compliance</span>
+                        <span class="cap-tag">Control Assessment</span>
+                        <span class="cap-tag">Data Governance</span>
+                    </div>
+                </div>
+                <div class="cap-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+            <a href="https://pci-quality.com/home/technology-solutions/" class="capability-item">
+                <div class="cap-number">04</div>
+                <div class="cap-content">
+                    <div class="cap-title">Technology Solutions</div>
+                    <p class="cap-desc">
+                        From automation and analytics platforms to integrated energy management
+                        systems, we deliver technology solutions that reduce operating costs,
+                        improve decision-making, and support the transition to sustainable energy
+                        models—without disrupting ongoing operations.
+                    </p>
+                    <div class="cap-tags">
+                        <span class="cap-tag">Process Automation</span>
+                        <span class="cap-tag">Energy Analytics</span>
+                        <span class="cap-tag">System Integration</span>
+                    </div>
+                </div>
+                <div class="cap-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- INSIGHT STRIP -->
+    <section class="insight-strip">
+        <div class="insight-inner">
+            <div class="insight-item">
+                <span class="insight-overline">Our Perspective</span>
+                <p class="insight-headline">
+                    The convergence of OT and IT creates both the greatest opportunity
+                    and the greatest vulnerability in modern energy infrastructure.
+                </p>
+                <p class="insight-body">
+                    Organizations that treat this convergence as a risk management problem
+                    alone will underperform those that treat it as a strategic advantage.
+                </p>
+            </div>
+            <div class="insight-item">
+                <span class="insight-overline">Sector Context</span>
+                <p class="insight-headline">
+                    Regulatory pressure across Southeast Asia is accelerating, not
+                    moderating—compliance is now a competitive differentiator.
+                </p>
+                <p class="insight-body">
+                    Our teams track regulatory developments across 12 jurisdictions to
+                    ensure clients are positioned ahead of enforcement, not behind it.
+                </p>
+            </div>
+            <div class="insight-item">
+                <span class="insight-overline">Our Approach</span>
+                <p class="insight-headline">
+                    Every engagement is led by a senior partner with direct experience
+                    in the energy and resources sector—no junior-led delivery.
+                </p>
+                <p class="insight-body">
+                    We bring independent judgment, not vendor relationships.
+                    Our recommendations are made in the client's interest alone.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT STRIP -->
+    <section class="contact-strip">
+        <div class="contact-strip-text">
+            <h3>Ready to begin a conversation?</h3>
+            <p>Our energy and resources partners are available for an initial discussion without obligation.</p>
+        </div>
+        <div class="contact-strip-actions">
+            <a href="https://pci-quality.com" class="btn-primary">
+                Request a Meeting
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+            <a href="https://pci-quality.com" class="btn-secondary">
+                View All Services
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p class="footer-copy">© 2024 PCI Quality Consulting. All rights reserved.</p>
+            <nav class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Contact</a>
+                <a href="https://pci-quality.com">pci-quality.com</a>
+            </nav>
+        </div>
+    </footer>
+
+</body>
+
+</html>
