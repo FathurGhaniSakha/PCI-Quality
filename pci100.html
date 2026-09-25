@@ -1,0 +1,1492 @@
+<style>
+    /* =====================================================
+       PCI by JAWS 
+    ====================================================== */
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .pcic-root {
+        --primary: #ED1C24;
+        --primary-dark: #C5151E;
+        --primary-light: rgba(237, 28, 36, 0.08);
+        --secondary: #54595F;
+        --text-main: #1E293B;
+        --text-muted: #64748B;
+        --border-color: #E2E8F0;
+        --surface: #ffffff;
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: var(--text-main);
+        line-height: 1.6;
+        background: #F8F9FB;
+        margin: 0;
+        padding: 0;
+    }
+
+    .pcic-root * {
+        box-sizing: border-box;
+    }
+
+    /* ── HERO ── */
+    .pcic-hero {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 40px 20px 0;
+    }
+
+    .pcic-hero-panel {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        background: var(--surface);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(30, 41, 59, 0.08);
+        border: 1px solid var(--border-color);
+    }
+
+    .pcic-hero-content {
+        padding: 64px 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 2;
+    }
+
+    .pcic-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--primary-light);
+        border: 1px solid rgba(237, 28, 36, 0.20);
+        border-radius: 50px;
+        padding: 6px 16px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 24px;
+        width: fit-content;
+    }
+
+    .pcic-badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--primary);
+    }
+
+    .pcic-hero h1 {
+        font-size: clamp(32px, 3.6vw, 46px);
+        font-weight: 800;
+        letter-spacing: -0.8px;
+        line-height: 1.12;
+        color: var(--text-main);
+        margin: 0 0 20px 0;
+    }
+
+    .pcic-hero h1 span {
+        color: var(--primary);
+    }
+
+    .pcic-hero-desc {
+        font-size: 16px;
+        color: var(--text-muted);
+        line-height: 1.85;
+        max-width: 480px;
+        margin-bottom: 36px;
+    }
+
+    .pcic-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--primary);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 15px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        width: fit-content;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 24px rgba(237, 28, 36, 0.25);
+    }
+
+    .pcic-cta:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(237, 28, 36, 0.32);
+    }
+
+    .pcic-cta svg {
+        transition: transform 0.3s ease;
+    }
+
+    .pcic-cta:hover svg {
+        transform: translateX(4px);
+    }
+
+    .pcic-hero-visual {
+        position: relative;
+        background:
+            linear-gradient(135deg, rgba(237, 28, 36, 0.35) 0%, rgba(197, 21, 30, 0.45) 100%),
+            url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+        min-height: 420px;
+        display: flex;
+        align-items: flex-end;
+        padding: 28px;
+    }
+
+    /* ── SECTION LABEL (shared) ── */
+    .pcic-section-label {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 12px;
+        display: block;
+    }
+
+    /* ── CAPABILITIES ── */
+    .pcic-capabilities {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 20px;
+    }
+
+    .pcic-capabilities-header {
+        text-align: center;
+        margin-bottom: 48px;
+    }
+
+    .pcic-capabilities-header h2 {
+        font-size: 32px;
+        color: var(--text-main);
+        font-weight: 800;
+        margin: 0 0 12px 0;
+        letter-spacing: -0.5px;
+    }
+
+    .pcic-capabilities-header h2::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: var(--primary);
+        margin: 16px auto 0;
+        border-radius: 4px;
+    }
+
+    .pcic-capabilities-header p {
+        font-size: 15px;
+        color: var(--text-muted);
+        max-width: 520px;
+        margin: 16px auto 0;
+    }
+
+    .pcic-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 32px;
+    }
+
+    .pcic-card {
+        background: var(--surface);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 40px 24px;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        display: block;
+    }
+
+    .pcic-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: var(--primary);
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+        transform-origin: left;
+    }
+
+    .pcic-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border-color: transparent;
+    }
+
+    .pcic-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .pcic-card-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 24px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--primary-light);
+        border-radius: 50%;
+        transition: all 0.4s ease;
+    }
+
+    .pcic-card:hover .pcic-card-icon-wrapper {
+        background-color: var(--primary);
+        transform: scale(1.05);
+    }
+
+    .pcic-card-icon-svg {
+        color: var(--primary);
+        transition: all 0.4s ease;
+    }
+
+    .pcic-card:hover .pcic-card-icon-svg {
+        color: #ffffff;
+    }
+
+    .pcic-card h4 {
+        font-size: 18px;
+        color: var(--secondary);
+        margin: 0 0 8px 0;
+        font-weight: 700;
+    }
+
+    .pcic-card-arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 1px solid var(--border-color);
+        color: var(--text-muted);
+        margin-top: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .pcic-card:hover .pcic-card-arrow {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+        transform: rotate(45deg);
+    }
+
+    /* ── HOW WE WORK ── */
+    .pcic-how {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px 80px;
+    }
+
+    .pcic-how-inner {
+        background: var(--surface);
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+        box-shadow: 0 20px 60px rgba(30, 41, 59, 0.08);
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+    }
+
+    .pcic-how-left {
+        background: linear-gradient(160deg, #ED1C24 0%, #C5151E 100%);
+        padding: 56px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .pcic-how-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 16px;
+    }
+
+    .pcic-how-heading {
+        font-size: 26px;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.25;
+        letter-spacing: -0.4px;
+        margin: 0;
+    }
+
+    .pcic-how-divider {
+        width: 40px;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.35);
+        border-radius: 2px;
+        margin-top: 28px;
+    }
+
+    .pcic-how-right {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pcic-pillar {
+        display: grid;
+        grid-template-columns: 64px 1fr;
+        align-items: start;
+        padding: 36px 48px 36px 0;
+        margin-left: 48px;
+        border-bottom: 1px solid var(--border-color);
+        transition: background 0.2s ease;
+    }
+
+    .pcic-pillar:last-child {
+        border-bottom: none;
+    }
+
+    .pcic-pillar:hover {
+        background: #FAFBFC;
+        margin-left: 0;
+        padding-left: 48px;
+    }
+
+    .pcic-pillar-num {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--primary);
+        letter-spacing: 0.5px;
+        padding-top: 3px;
+        opacity: 0.5;
+        transition: opacity 0.2s;
+    }
+
+    .pcic-pillar:hover .pcic-pillar-num {
+        opacity: 1;
+    }
+
+    .pcic-pillar-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text-main);
+        margin-bottom: 8px;
+        letter-spacing: -0.2px;
+    }
+
+    .pcic-pillar-body {
+        font-size: 15px;
+        line-height: 1.75;
+        color: var(--text-muted);
+        font-weight: 400;
+        max-width: 560px;
+    }
+
+    /* ── OUR EXPERT ── */
+    .pcic-experts {
+        background: #111111;
+        padding: 78px 0;
+    }
+
+    .pcic-experts-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .pcic-experts-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+
+    .pcic-experts-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.35);
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .pcic-experts-heading {
+        font-size: 32px;
+        font-weight: 800;
+        color: #ffffff;
+        letter-spacing: -0.5px;
+        margin: 0;
+    }
+
+    .pcic-experts-rail-wrap {
+        position: relative;
+    }
+
+    .pcic-rail-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 255, 255, 0.15);
+        background: rgba(144, 5, 5, 0.85);
+        backdrop-filter: blur(8px);
+        color: rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .pcic-rail-btn:hover {
+        border-color: var(--primary);
+        color: #fff;
+        background: var(--primary);
+    }
+
+    .pcic-rail-btn-prev {
+        left: -22px;
+    }
+
+    .pcic-rail-btn-next {
+        right: -22px;
+    }
+
+    .pcic-experts-rail {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 8px 2px;
+    }
+
+    .pcic-experts-rail::-webkit-scrollbar {
+        display: none;
+    }
+
+    .pcic-expert-card {
+        flex: 0 0 260px;
+        scroll-snap-align: start;
+        background: #1A1A1A;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        text-decoration: none;
+        display: block;
+    }
+
+    .pcic-expert-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        border-color: rgba(237, 28, 36, 0.4);
+    }
+
+    .pcic-expert-photo {
+        width: 100%;
+        aspect-ratio: 3/4;
+        background-color: #2A2A2A;
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+        filter: grayscale(15%);
+        transition: filter 0.3s ease, transform 0.4s ease;
+    }
+
+    .pcic-expert-card:hover .pcic-expert-photo {
+        filter: grayscale(0%);
+        transform: scale(1.03);
+    }
+
+    .pcic-expert-photo-wrap {
+        overflow: hidden;
+    }
+
+    .pcic-expert-info {
+        padding: 20px 24px 24px;
+        border-top: 2px solid var(--primary);
+    }
+
+    .pcic-expert-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -0.2px;
+    }
+
+    .pcic-expert-role {
+        font-size: 12.5px;
+        color: rgba(255, 255, 255, 0.38);
+        margin-top: 5px;
+        font-weight: 400;
+    }
+
+    .pcic-expert-linkedin {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 14px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.2);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .pcic-expert-card:hover .pcic-expert-linkedin {
+        color: rgba(237, 28, 36, 0.8);
+    }
+
+    /* ── OUR INSIGHTS ── */
+    .pcic-insights {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 50px 20px 80px;
+        /* FIX: was "50 20px 80px" */
+    }
+
+    .pcic-insights-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 32px;
+    }
+
+    .pcic-insights-discover {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--primary);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: gap 0.2s ease;
+    }
+
+    .pcic-insights-discover:hover {
+        gap: 10px;
+    }
+
+    .pcic-insights-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 20px;
+    }
+
+    .pcic-insight-card {
+        background: var(--surface);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        position: relative;
+    }
+
+    .pcic-insight-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--primary);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .pcic-insight-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border-color: transparent;
+    }
+
+    .pcic-insight-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .pcic-insight-thumb {
+        width: 100%;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        background: #f0f0f0;
+    }
+
+    .pcic-insight-card:nth-child(1) .pcic-insight-thumb {
+        aspect-ratio: 16/10;
+    }
+
+    .pcic-insight-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+        filter: grayscale(10%);
+    }
+
+    .pcic-insight-card:hover .pcic-insight-thumb img {
+        transform: scale(1.05);
+        filter: grayscale(0%);
+    }
+
+    .pcic-insight-body {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    .pcic-insight-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text-main);
+        line-height: 1.4;
+        letter-spacing: -0.2px;
+        flex: 1;
+    }
+
+    .pcic-insight-card:nth-child(1) .pcic-insight-title {
+        font-size: 19px;
+    }
+
+    .pcic-insight-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 14px;
+        font-size: 12px;
+        color: var(--text-muted);
+    }
+
+    .pcic-insight-meta-dot {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--border-color);
+    }
+
+    .pcic-insight-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 16px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--primary);
+        transition: gap 0.2s ease;
+        align-self: flex-start;
+    }
+
+    .pcic-insight-card:hover .pcic-insight-link {
+        gap: 10px;
+    }
+
+    /* ── CTA BLOCK ── */
+    .pcic-cta-block {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px 80px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .pcic-cta-panel {
+        border-radius: 24px;
+        padding: 52px 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 260px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pcic-cta-panel:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    .pcic-cta-panel:first-child {
+        background: linear-gradient(135deg, #ED1C24 0%, #C5151E 100%);
+        box-shadow: 0 20px 60px rgba(237, 28, 36, 0.2);
+    }
+
+    .pcic-cta-panel:last-child {
+        background: linear-gradient(135deg, #1E293B 0%, #111827 100%);
+        box-shadow: 0 20px 60px rgba(30, 41, 59, 0.2);
+    }
+
+    .pcic-cta-panel::after {
+        content: '';
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        bottom: -60px;
+        right: -60px;
+        pointer-events: none;
+    }
+
+    .pcic-cta-panel:first-child::after {
+        background: rgba(255, 255, 255, 0.07);
+    }
+
+    .pcic-cta-panel:last-child::after {
+        background: rgba(237, 28, 36, 0.12);
+    }
+
+    .pcic-cta-eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        margin: 0 0 12px;
+    }
+
+    .pcic-cta-heading {
+        font-size: 24px;
+        font-weight: 800;
+        color: #ffffff;
+        line-height: 1.25;
+        letter-spacing: -0.4px;
+        margin: 0;
+        max-width: 320px;
+    }
+
+    .pcic-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 36px;
+        padding: 14px 28px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        width: fit-content;
+        transition: gap 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pcic-cta-btn:hover {
+        gap: 14px;
+        transform: translateY(-2px);
+    }
+
+    .pcic-cta-panel:first-child .pcic-cta-btn {
+        background: #ffffff;
+        color: var(--primary);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .pcic-cta-panel:first-child .pcic-cta-btn:hover {
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .pcic-cta-panel:last-child .pcic-cta-btn {
+        background: var(--primary);
+        color: #ffffff;
+        box-shadow: 0 8px 24px rgba(237, 28, 36, 0.3);
+    }
+
+    .pcic-cta-panel:last-child .pcic-cta-btn:hover {
+        box-shadow: 0 12px 32px rgba(237, 28, 36, 0.4);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+        .pcic-hero-panel {
+            grid-template-columns: 1fr;
+        }
+
+        .pcic-hero-content {
+            padding: 48px 32px 32px;
+        }
+
+        .pcic-hero-visual {
+            min-height: 280px;
+            padding: 20px;
+        }
+
+        .pcic-how-inner {
+            grid-template-columns: 1fr;
+        }
+
+        .pcic-how-left {
+            padding: 40px 32px;
+        }
+
+        .pcic-pillar {
+            margin-left: 32px;
+            padding: 28px 32px 28px 0;
+        }
+
+        .pcic-pillar:hover {
+            margin-left: 0;
+            padding-left: 32px;
+        }
+
+        .pcic-rail-btn-prev {
+            left: -10px;
+        }
+
+        .pcic-rail-btn-next {
+            right: -10px;
+        }
+
+        .pcic-insights-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 680px) {
+        .pcic-cta-block {
+            grid-template-columns: 1fr;
+        }
+
+        .pcic-cta-panel {
+            padding: 40px 32px;
+            min-height: 220px;
+        }
+
+        .pcic-cta-heading {
+            font-size: 22px;
+        }
+    }
+
+    @media (max-width: 560px) {
+        .pcic-insights-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .pcic-insight-card:nth-child(1) .pcic-insight-title {
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .pcic-hero-content {
+            padding: 40px 24px 28px;
+        }
+
+        .pcic-capabilities {
+            padding: 56px 20px;
+        }
+
+        .pcic-card {
+            padding: 30px 20px;
+        }
+
+        .pcic-how-left {
+            padding: 36px 24px;
+        }
+
+        .pcic-pillar {
+            margin-left: 24px;
+            padding: 24px 24px 24px 0;
+            grid-template-columns: 48px 1fr;
+        }
+
+        .pcic-pillar:hover {
+            padding-left: 24px;
+        }
+
+        .pcic-experts {
+            padding: 56px 0;
+        }
+
+        .pcic-expert-card {
+            flex: 0 0 220px;
+        }
+
+        .pcic-rail-btn {
+            width: 36px;
+            height: 36px;
+        }
+
+        .pcic-rail-btn-prev {
+            left: -4px;
+        }
+
+        .pcic-rail-btn-next {
+            right: -4px;
+        }
+
+        .pcic-cta-panel {
+            padding: 36px 24px;
+        }
+    }
+</style>
+
+<div class="pcic-root">
+
+    <!-- HERO -->
+    <div class="pcic-hero">
+        <div class="pcic-hero-panel">
+            <div class="pcic-hero-content">
+                <div class="pcic-badge">
+                    <span class="pcic-badge-dot"></span>
+                    Resource &amp; Energy
+                </div>
+                <h1>Power a <span>Sustainable</span> Future</h1>
+                <p class="pcic-hero-desc">
+                    The energy and natural resources sectors are transforming through innovation,
+                    efficiency, and sustainability imperatives. Our Resources &amp; Energy Advisory
+                    supports your journey toward digital excellence—leveraging automation, data
+                    analytics, and advanced cybersecurity frameworks to enhance operational safety,
+                    ensure regulatory compliance, and drive sustainable energy management.
+                </p>
+                <a href="https://pci-quality.com" class="pcic-cta">
+                    Explore Our Solutions
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+            <div class="pcic-hero-visual"></div>
+        </div>
+    </div>
+
+    <!-- CAPABILITIES -->
+    <div class="pcic-capabilities">
+        <div class="pcic-capabilities-header">
+            <span class="pcic-section-label">What We Offer</span>
+            <h2>Relevant Capabilities</h2>
+            <p>Purpose-built services to modernize and secure your energy operations, from infrastructure to compliance.
+            </p>
+        </div>
+        <div class="pcic-grid">
+            <a href="https://pci-quality.com/home/it-consulting/" class="pcic-card">
+                <div class="pcic-card-icon-wrapper">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="pcic-card-icon-svg">
+                        <rect width="20" height="14" x="2" y="3" rx="2" />
+                        <line x1="8" x2="16" y1="21" y2="21" />
+                        <line x1="12" x2="12" y1="17" y2="21" />
+                    </svg>
+                </div>
+                <h4>IT Consulting</h4>
+                <div class="pcic-card-arrow">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+            <a href="https://pci-quality.com/industries/cybersecurity/" class="pcic-card">
+                <div class="pcic-card-icon-wrapper">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="pcic-card-icon-svg">
+                        <path
+                            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2-1 4-2 7-2 2.5 0 4.5 1 6.5 2a1 1 0 0 1 1 1z" />
+                        <path d="m9 12 2 2 4-4" />
+                    </svg>
+                </div>
+                <h4>Cybersecurity</h4>
+                <div class="pcic-card-arrow">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+            <a href="https://pci-quality.com/home/it-audit/" class="pcic-card">
+                <div class="pcic-card-icon-wrapper">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="pcic-card-icon-svg">
+                        <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                        <path d="m9 14 2 2 4-4" />
+                    </svg>
+                </div>
+                <h4>IT Audit</h4>
+                <div class="pcic-card-arrow">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+            <a href="https://pci-quality.com/home/technology-solutions/" class="pcic-card">
+                <div class="pcic-card-icon-wrapper">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="pcic-card-icon-svg">
+                        <rect width="16" height="16" x="4" y="4" rx="2" />
+                        <rect width="6" height="6" x="9" y="9" rx="1" />
+                        <path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2" />
+                    </svg>
+                </div>
+                <h4>Technology Solution</h4>
+                <div class="pcic-card-arrow">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- HOW WE WORK -->
+    <div class="pcic-how">
+        <div class="pcic-how-inner">
+            <div class="pcic-how-left">
+                <p class="pcic-how-label">How We Work</p>
+                <h2 class="pcic-how-heading">Three principles that guide every energy engagement.</h2>
+                <div class="pcic-how-divider"></div>
+            </div>
+            <div class="pcic-how-right">
+                <div class="pcic-pillar">
+                    <div class="pcic-pillar-num">01</div>
+                    <div class="pcic-pillar-content">
+                        <div class="pcic-pillar-title">Operational Safety First</div>
+                        <p class="pcic-pillar-body">Every engagement starts with a rigorous safety posture review. We
+                            map your OT/IT landscape and identify risks before they become incidents — in the field or
+                            in the cloud. No recommendation leaves our team without an operational impact assessment.
+                        </p>
+                    </div>
+                </div>
+                <div class="pcic-pillar">
+                    <div class="pcic-pillar-num">02</div>
+                    <div class="pcic-pillar-content">
+                        <div class="pcic-pillar-title">Regulatory Confidence</div>
+                        <p class="pcic-pillar-body">The energy sector operates under some of the strictest regulations
+                            globally. We translate complex frameworks — ISO 27001, NERC CIP, SKK Migas — into clear,
+                            auditable action plans your team can own and defend during any inspection.</p>
+                    </div>
+                </div>
+                <div class="pcic-pillar">
+                    <div class="pcic-pillar-num">03</div>
+                    <div class="pcic-pillar-content">
+                        <div class="pcic-pillar-title">Built for Resilience</div>
+                        <p class="pcic-pillar-body">Critical infrastructure cannot afford downtime. Our solutions are
+                            designed for high-availability environments — from upstream oil &amp; gas to renewable
+                            generation — with business continuity and disaster recovery planning embedded from day one.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OUR EXPERT -->
+    <div class="pcic-experts">
+        <div class="pcic-experts-inner">
+            <div class="pcic-experts-header">
+                <div>
+                    <span class="pcic-experts-label">The People Behind the Work</span>
+                    <h2 class="pcic-experts-heading">Our Expert</h2>
+                </div>
+            </div>
+            <div class="pcic-experts-rail-wrap">
+                <button class="pcic-rail-btn pcic-rail-btn-prev" id="pcicPrev" aria-label="Previous">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <div class="pcic-experts-rail" id="pcicRail">
+
+                    <a href="https://pci-quality.com/our-expert/novar-kurniawan/" class="pcic-expert-card">
+                        <div class="pcic-expert-photo-wrap">
+                            <div class="pcic-expert-photo"
+                                style="background-image: url('https://pci-quality.com/wp-content/uploads/2026/01/6.jpg');">
+                            </div>
+                        </div>
+                        <div class="pcic-expert-info">
+                            <div class="pcic-expert-name">Novar Kurniawan</div>
+                            <div class="pcic-expert-role">IT Consulting Lead</div>
+                            <span class="pcic-expert-linkedin">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                                see more
+                            </span>
+                        </div>
+                    </a>
+
+                    <a href="https://pci-quality.com/our-expert/rizky-muhammad/" class="pcic-expert-card">
+                        <div class="pcic-expert-photo-wrap">
+                            <div class="pcic-expert-photo"
+                                style="background-image: url('https://pci-quality.com/wp-content/uploads/2026/01/7.jpg');">
+                            </div>
+                        </div>
+                        <div class="pcic-expert-info">
+                            <div class="pcic-expert-name">Rizky Muhammad</div>
+                            <div class="pcic-expert-role">Cybersecurity Specialist</div>
+                            <span class="pcic-expert-linkedin">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                                see more
+                            </span>
+                        </div>
+                    </a>
+
+                    <a href="https://pci-quality.com/our-expert/tus-maemunah/" class="pcic-expert-card">
+                        <div class="pcic-expert-photo-wrap">
+                            <div class="pcic-expert-photo"
+                                style="background-image: url('https://pci-quality.com/wp-content/uploads/2026/01/8.jpg');">
+                            </div>
+                        </div>
+                        <div class="pcic-expert-info">
+                            <div class="pcic-expert-name">Tus Maemunah</div>
+                            <div class="pcic-expert-role">IT Audit Practitioner</div>
+                            <span class="pcic-expert-linkedin">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                                see more
+                            </span>
+                        </div>
+                    </a>
+
+                    <a href="https://pci-quality.com/our-expert/raka-raditya/" class="pcic-expert-card">
+                        <div class="pcic-expert-photo-wrap">
+                            <div class="pcic-expert-photo"
+                                style="background-image: url('https://pci-quality.com/wp-content/uploads/2026/01/9.jpg');">
+                            </div>
+                        </div>
+                        <div class="pcic-expert-info">
+                            <div class="pcic-expert-name">Raka Raditya</div>
+                            <div class="pcic-expert-role">Solutions Architect</div>
+                            <span class="pcic-expert-linkedin">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                                see more
+                            </span>
+                        </div>
+                    </a>
+
+                    <a href="https://pci-quality.com/our-expert/amanullah-irsyad/" class="pcic-expert-card">
+                        <div class="pcic-expert-photo-wrap">
+                            <div class="pcic-expert-photo"
+                                style="background-image: url('https://pci-quality.com/wp-content/uploads/2026/01/Amanullah-Irsyad-1.png');">
+                            </div>
+                        </div>
+                        <div class="pcic-expert-info">
+                            <div class="pcic-expert-name">Amanullah Irsyad</div>
+                            <div class="pcic-expert-role">IT Consultant</div>
+                            <span class="pcic-expert-linkedin">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                                see more
+                            </span>
+                        </div>
+                    </a>
+
+                    <a href="https://pci-quality.com/our-expert/luthfy-burhanuddin/" class="pcic-expert-card">
+                        <div class="pcic-expert-photo-wrap">
+                            <div class="pcic-expert-photo"
+                                style="background-image: url('https://pci-quality.com/wp-content/uploads/2026/01/Luthfy-Burhanuddin.png');">
+                            </div>
+                        </div>
+                        <div class="pcic-expert-info">
+                            <div class="pcic-expert-name">Luthfy Burhanuddin</div>
+                            <div class="pcic-expert-role">IT Consultant</div>
+                            <span class="pcic-expert-linkedin">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                                see more
+                            </span>
+                        </div>
+                    </a>
+
+                    <a href="https://pci-quality.com/our-expert/adinda-mutiara/" class="pcic-expert-card">
+                        <div class="pcic-expert-photo-wrap">
+                            <div class="pcic-expert-photo"
+                                style="background-image: url('https://pci-quality.com/wp-content/uploads/2026/01/1.jpg');">
+                            </div>
+                        </div>
+                        <div class="pcic-expert-info">
+                            <div class="pcic-expert-name">Adinda Mutiara</div>
+                            <div class="pcic-expert-role">IT Consultant</div>
+                            <span class="pcic-expert-linkedin">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                                see more
+                            </span>
+                        </div>
+                    </a>
+
+                    <a href="https://pci-quality.com/our-expert/didit-bagus-prasetyo/" class="pcic-expert-card">
+                        <div class="pcic-expert-photo-wrap">
+                            <div class="pcic-expert-photo"
+                                style="background-image: url('https://pci-quality.com/wp-content/uploads/2026/01/2.jpg');">
+                            </div>
+                        </div>
+                        <div class="pcic-expert-info">
+                            <div class="pcic-expert-name">Didit Bagus Prasetyo</div>
+                            <div class="pcic-expert-role">IT Consultant</div>
+                            <span class="pcic-expert-linkedin">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                                see more
+                            </span>
+                        </div>
+                    </a>
+
+                    <a href="https://pci-quality.com/our-expert/cahyo-amali/" class="pcic-expert-card">
+                        <div class="pcic-expert-photo-wrap">
+                            <div class="pcic-expert-photo"
+                                style="background-image: url('https://pci-quality.com/wp-content/uploads/2026/01/3.jpg');">
+                            </div>
+                        </div>
+                        <div class="pcic-expert-info">
+                            <div class="pcic-expert-name">Cahyo Amali</div>
+                            <div class="pcic-expert-role">IT Consultant</div>
+                            <span class="pcic-expert-linkedin">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                                see more
+                            </span>
+                        </div>
+                    </a>
+
+                    <a href="https://pci-quality.com/our-expert/ghalang-ady/" class="pcic-expert-card">
+                        <div class="pcic-expert-photo-wrap">
+                            <div class="pcic-expert-photo"
+                                style="background-image: url('https://pci-quality.com/wp-content/uploads/2026/01/Ghalang-Ady.png');">
+                            </div>
+                        </div>
+                        <div class="pcic-expert-info">
+                            <div class="pcic-expert-name">Ghalang Ady</div>
+                            <div class="pcic-expert-role">IT Consultant</div>
+                            <span class="pcic-expert-linkedin">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                                see more
+                            </span>
+                        </div>
+                    </a>
+
+                    <a href="https://pci-quality.com/our-expert/anisa-azzahro/" class="pcic-expert-card">
+                        <div class="pcic-expert-photo-wrap">
+                            <div class="pcic-expert-photo"
+                                style="background-image: url('https://pci-quality.com/wp-content/uploads/2026/01/5.jpg');">
+                            </div>
+                        </div>
+                        <div class="pcic-expert-info">
+                            <div class="pcic-expert-name">Anisa Azzahro</div>
+                            <div class="pcic-expert-role">IT Consultant</div>
+                            <span class="pcic-expert-linkedin">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                                see more
+                            </span>
+                        </div>
+                    </a>
+
+                </div>
+                <button class="pcic-rail-btn pcic-rail-btn-next" id="pcicNext" aria-label="Next">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- OUR INSIGHTS -->
+    <div class="pcic-insights">
+        <div class="pcic-insights-header">
+            <div>
+                <span class="pcic-section-label">Thought Leadership</span>
+                <h2 style="font-size:32px;font-weight:800;letter-spacing:-0.5px;color:var(--text-main);margin:0;">
+                    Our Insight
+                </h2>
+            </div>
+            <a href="https://pci-quality.com/home/news/" class="pcic-insights-discover">
+                Discover More
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+        <div class="pcic-insights-grid">
+            <a href="https://pci-quality.com/ai-cybersecurity/" class="pcic-insight-card">
+                <div class="pcic-insight-thumb">
+                    <img src="https://pci-quality.com/wp-content/uploads/2026/09/Logo-G-Gemini.png"
+                        alt="AI Cybersecurity" loading="lazy">
+                </div>
+                <div class="pcic-insight-body">
+                    <div class="pcic-insight-title">AI Cybersecurity: Ketika Gemini Mengakses Sistem Perusahaan dalam
+                        Uji Keamanan</div>
+                    <div class="pcic-insight-meta">
+                        <span>8 min read</span>
+                        <span class="pcic-insight-meta-dot"></span>
+                        <span>September 2026</span>
+                    </div>
+                    <span class="pcic-insight-link">
+                        Read Article
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </span>
+                </div>
+            </a>
+            <a href="https://pci-quality.com/cyber-range-service-pci-quality/" class="pcic-insight-card">
+                <div class="pcic-insight-thumb">
+                    <img src="https://pci-quality.com/wp-content/uploads/2026/09/Cyber-Range-Photo.png"
+                        alt="Cyber Range" loading="lazy">
+                </div>
+                <div class="pcic-insight-body">
+                    <div class="pcic-insight-title">Cyber Range: Cara Baru Menguji Kesiapan Organisasi Menghadapi
+                        Serangan Siber di Era AI</div>
+                    <div class="pcic-insight-meta">
+                        <span>8 min read</span>
+                        <span class="pcic-insight-meta-dot"></span>
+                        <span>September 2026</span>
+                    </div>
+                    <span class="pcic-insight-link">
+                        Read Article
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </span>
+                </div>
+            </a>
+            <a href="https://pci-quality.com/cybersecurity-perusahaan/" class="pcic-insight-card">
+                <div class="pcic-insight-thumb">
+                    <img src="https://pci-quality.com/wp-content/uploads/2026/09/Cybersecurity.png" alt="Cybersecurity"
+                        loading="lazy">
+                </div>
+                <div class="pcic-insight-body">
+                    <div class="pcic-insight-title">Cybersecurity: Pengertian, Manfaat, dan Pentingnya bagi Perusahaan
+                        di era modern.</div>
+                    <div class="pcic-insight-meta">
+                        <span>12 min read</span>
+                        <span class="pcic-insight-meta-dot"></span>
+                        <span>September 2026</span>
+                    </div>
+                    <span class="pcic-insight-link">
+                        Read Article
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- CTA BLOCK -->
+    <div class="pcic-cta-block">
+        <div class="pcic-cta-panel">
+            <div>
+                <p class="pcic-cta-eyebrow">Get in Touch</p>
+                <h3 class="pcic-cta-heading">Information Technology Project</h3>
+            </div>
+            <a href="https://pci-quality.com/contact-us/" class="pcic-cta-btn">
+                Contact Us
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+        <div class="pcic-cta-panel">
+            <div>
+                <p class="pcic-cta-eyebrow">Knowledge Hub</p>
+                <h3 class="pcic-cta-heading">Request a Consultation</h3>
+            </div>
+            <a href="https://wa.me/+628118129496" class="pcic-cta-btn">
+                Tell Us What You Need
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const rail = document.getElementById('pcicRail');
+            const cardWidth = 260 + 20;
+            document.getElementById('pcicNext').addEventListener('click', function () {
+                rail.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            });
+            document.getElementById('pcicPrev').addEventListener('click', function () {
+                rail.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+            });
+        })();
+    </script>
+
+</div>
