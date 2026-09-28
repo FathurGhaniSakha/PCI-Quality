@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — PCI Quality</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .pcic-root {
+            --primary: #ED1C24;
+            --primary-dark: #C5151E;
+            --primary-light: rgba(237, 28, 36, 0.08);
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --surface: #ffffff;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            background: #F8F9FB;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pcic-root * {
+            box-sizing: border-box;
+        }
+
+        .pcic-section-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* ═══════════════════════════════════════
+       1. HERO — full editorial, dark split
+    ═══════════════════════════════════════ */
+        .pcic-hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 0;
+        }
+
+        .pcic-hero-panel {
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            min-height: 520px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            box-shadow: 0 20px 60px rgba(30, 41, 59, 0.12);
+        }
+
+        /* Left — dark ink panel */
+        .pcic-hero-left {
+            background: #0E1623;
+            padding: 72px 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pcic-hero-left::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -1px;
+            bottom: 0;
+            width: 60px;
+            background: #0E1623;
+            clip-path: polygon(0 0, 40% 0, 100% 100%, 0 100%);
+            z-index: 3;
+        }
+
+        .pcic-hero-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.35);
+            margin-bottom: 0;
+        }
+
+        .pcic-hero h1 {
+            font-size: clamp(38px, 4.5vw, 62px);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+            margin: 0;
+        }
+
+        .pcic-hero h1 .red {
+            color: var(--primary);
+        }
+
+        .pcic-hero-tagline {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.75;
+            max-width: 380px;
+            font-weight: 300;
+            margin-top: 24px;
+        }
+
+        /* Founding pill */
+        .pcic-hero-founding {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 40px;
+            background: rgba(237, 28, 36, 0.12);
+            border: 1px solid rgba(237, 28, 36, 0.25);
+            border-radius: 12px;
+            padding: 14px 20px;
+            width: fit-content;
+        }
+
+        .pcic-hero-founding-year {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            letter-spacing: -0.5px;
+        }
+
+        .pcic-hero-founding-text {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        /* Right — photo */
+        .pcic-hero-right {
+            position: relative;
+            background:
+                linear-gradient(to right, #0E1623 0%, rgba(14, 22, 35, 0) 40%),
+                url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1000&q=85') center/cover no-repeat;
+            z-index: 1;
+        }
+
+        /* Red accent bottom bar */
+        .pcic-hero-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+            z-index: 10;
+        }
+
+        /* ═══════════════════════════════════════
+       PCI ACRONYM STRIP
+    ═══════════════════════════════════════ */
+        .pcic-acronym {
+            background: var(--surface);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .pcic-acronym-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .pcic-acronym-cell {
+            padding: 40px 48px;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: background 0.2s;
+        }
+
+        .pcic-acronym-cell:last-child {
+            border-right: none;
+        }
+
+        .pcic-acronym-cell:hover {
+            background: #FAFAFA;
+        }
+
+        .pcic-acronym-letter {
+            font-size: 52px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            letter-spacing: -2px;
+            flex-shrink: 0;
+            opacity: 0.15;
+            transition: opacity 0.2s;
+        }
+
+        .pcic-acronym-cell:hover .pcic-acronym-letter {
+            opacity: 0.4;
+        }
+
+        .pcic-acronym-word {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.3px;
+            margin-bottom: 6px;
+        }
+
+        .pcic-acronym-desc {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* ═══════════════════════════════════════
+       2. VISION & MISSION — editorial split
+    ═══════════════════════════════════════ */
+        .pcic-vm {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 88px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .pcic-vm-left {}
+
+        .pcic-vm-block {
+            padding-bottom: 48px;
+            margin-bottom: 48px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .pcic-vm-block:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .pcic-vm-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .pcic-vm-tag-line {
+            width: 20px;
+            height: 2px;
+            background: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .pcic-vm-heading {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin: 0 0 16px;
+        }
+
+        .pcic-vm-body {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* Mission list */
+        .pcic-mission-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pcic-mission-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .pcic-mission-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        /* Right — photo stack */
+        .pcic-vm-right {
+            position: sticky;
+            top: 100px;
+        }
+
+        .pcic-vm-photo {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(30, 41, 59, 0.1);
+            aspect-ratio: 4/3;
+            background:
+                url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80') center/cover no-repeat;
+        }
+
+        /* Credo card below photo */
+        .pcic-vm-credo-card {
+            background: var(--primary);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-top: 20px;
+        }
+
+        .pcic-vm-credo-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .pcic-vm-credo-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.55;
+            font-style: italic;
+        }
+
+        /* ═══════════════════════════════════════
+       3. MILESTONE — timeline
+    ═══════════════════════════════════════ */
+        .pcic-milestone {
+            background: var(--surface);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 80px 0;
+        }
+
+        .pcic-milestone-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .pcic-milestone-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .pcic-milestone-heading {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+            margin: 8px 0 0;
+        }
+
+        /* Timeline track */
+        .pcic-timeline {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        /* Connecting line */
+        .pcic-timeline::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: var(--border-color);
+            z-index: 0;
+        }
+
+        .pcic-tl-item {
+            position: relative;
+            padding: 0 20px;
+            z-index: 1;
+        }
+
+        /* Dot */
+        .pcic-tl-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: border-color 0.2s, background 0.2s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pcic-tl-item:hover .pcic-tl-dot {
+            border-color: var(--primary);
+            background: var(--primary);
+        }
+
+        .pcic-tl-item:hover .pcic-tl-dot svg {
+            color: #fff;
+        }
+
+        .pcic-tl-dot svg {
+            color: var(--primary);
+            transition: color 0.2s;
+        }
+
+        .pcic-tl-year {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary);
+            text-align: center;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .pcic-tl-card {
+            background: #F8F9FB;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px 22px;
+            transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+        }
+
+        .pcic-tl-item:hover .pcic-tl-card {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+            transform: translateY(-4px);
+            border-color: rgba(237, 28, 36, 0.2);
+        }
+
+        .pcic-tl-text {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.65;
+            font-weight: 400;
+        }
+
+        /* ═══════════════════════════════════════
+       4. OUR CREDO — full editorial
+    ═══════════════════════════════════════ */
+        .pcic-credo {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 88px 20px;
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .pcic-credo-left {
+            position: sticky;
+            top: 100px;
+        }
+
+        .pcic-credo-heading {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin: 8px 0 28px;
+        }
+
+        .pcic-credo-heading span {
+            color: var(--primary);
+        }
+
+        /* Big quote mark */
+        .pcic-credo-quote-mark {
+            font-size: 120px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 0.7;
+            opacity: 0.08;
+            letter-spacing: -4px;
+            margin-bottom: 20px;
+            font-family: Georgia, serif;
+        }
+
+        .pcic-credo-right {}
+
+        .pcic-credo-para {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.85;
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .pcic-credo-para:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Highlighted sentence */
+        .pcic-credo-highlight {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-main);
+            line-height: 1.6;
+            border-left: 3px solid var(--primary);
+            padding-left: 20px;
+            margin: 32px 0;
+        }
+
+        /* ═══════════════════════════════════════
+       CTA BLOCK
+    ═══════════════════════════════════════ */
+        .pcic-cta-block {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .pcic-cta-panel {
+            border-radius: 24px;
+            padding: 52px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 260px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pcic-cta-panel:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        .pcic-cta-panel:first-child {
+            background: linear-gradient(135deg, #ED1C24 0%, #C5151E 100%);
+            box-shadow: 0 20px 60px rgba(237, 28, 36, 0.2);
+        }
+
+        .pcic-cta-panel:last-child {
+            background: linear-gradient(135deg, #1E293B 0%, #111827 100%);
+            box-shadow: 0 20px 60px rgba(30, 41, 59, 0.2);
+        }
+
+        .pcic-cta-panel::after {
+            content: '';
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            bottom: -60px;
+            right: -60px;
+            pointer-events: none;
+        }
+
+        .pcic-cta-panel:first-child::after {
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .pcic-cta-panel:last-child::after {
+            background: rgba(237, 28, 36, 0.12);
+        }
+
+        .pcic-cta-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            margin: 0 0 12px;
+        }
+
+        .pcic-cta-heading {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.25;
+            letter-spacing: -0.4px;
+            margin: 0;
+            max-width: 300px;
+        }
+
+        .pcic-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 36px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            width: fit-content;
+            transition: gap 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pcic-cta-btn:hover {
+            gap: 14px;
+            transform: translateY(-2px);
+        }
+
+        .pcic-cta-panel:first-child .pcic-cta-btn {
+            background: #fff;
+            color: var(--primary);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .pcic-cta-panel:last-child .pcic-cta-btn {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(237, 28, 36, 0.3);
+        }
+
+        /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .pcic-credo {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .pcic-credo-left {
+                position: static;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .pcic-hero-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .pcic-hero-left {
+                padding: 56px 32px;
+            }
+
+            .pcic-hero-left::after {
+                display: none;
+            }
+
+            .pcic-hero-right {
+                min-height: 280px;
+            }
+
+            .pcic-acronym-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .pcic-acronym-cell {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .pcic-acronym-cell:last-child {
+                border-bottom: none;
+            }
+
+            .pcic-vm {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .pcic-vm-right {
+                position: static;
+            }
+
+            .pcic-timeline {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+
+            .pcic-timeline::before {
+                display: none;
+            }
+
+            .pcic-cta-block {
+                grid-template-columns: 1fr;
+            }
+
+            .pcic-cta-panel {
+                padding: 40px 32px;
+                min-height: 220px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .pcic-hero-left {
+                padding: 48px 24px;
+            }
+
+            .pcic-vm {
+                padding: 56px 20px;
+            }
+
+            .pcic-timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .pcic-credo {
+                padding: 56px 20px;
+            }
+
+            .pcic-cta-panel {
+                padding: 36px 24px;
+            }
+
+            .pcic-cta-heading {
+                font-size: 20px;
+            }
+        }
+    </style>
+
+    <div class="pcic-root">
+
+        <!-- ═══ 1. HERO ═══ -->
+        <div class="pcic-hero">
+            <div class="pcic-hero-panel">
+
+                <div class="pcic-hero-left">
+                    <div>
+                        <p class="pcic-hero-eyebrow">Who We Are</p>
+                    </div>
+                    <div>
+                        <h1>PCI<br><span class="red">Quality.</span></h1>
+                        <p class="pcic-hero-tagline">
+                            A trusted IT consulting firm helping organizations build stronger IT governance,
+                            cybersecurity, and compliance — grounded in international standards
+                            and built for the real world.
+                        </p>
+                        <div class="pcic-hero-founding">
+                            <div class="pcic-hero-founding-year">2021</div>
+                            <div class="pcic-hero-founding-text">
+                                Established March 24<br>Jakarta, Indonesia
+                            </div>
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+
+                <div class="pcic-hero-right"></div>
+                <div class="pcic-hero-bar"></div>
+
+            </div>
+        </div>
+
+        <!-- ═══ PCI ACRONYM ═══ -->
+        <div class="pcic-acronym">
+            <div class="pcic-acronym-inner">
+
+                <div class="pcic-acronym-cell">
+                    <div class="pcic-acronym-letter">P</div>
+                    <div>
+                        <div class="pcic-acronym-word">Professional</div>
+                        <p class="pcic-acronym-desc">Delivering every engagement with the rigor, expertise, and
+                            accountability that complex organizations demand.</p>
+                    </div>
+                </div>
+
+                <div class="pcic-acronym-cell">
+                    <div class="pcic-acronym-letter">C</div>
+                    <div>
+                        <div class="pcic-acronym-word">Compliance</div>
+                        <p class="pcic-acronym-desc">Building frameworks that help clients navigate regulations — ISO,
+                            PCI-DSS, SKK Migas — with clarity and confidence.</p>
+                    </div>
+                </div>
+
+                <div class="pcic-acronym-cell">
+                    <div class="pcic-acronym-letter">I</div>
+                    <div>
+                        <div class="pcic-acronym-word">Institute</div>
+                        <p class="pcic-acronym-desc">A learning organization committed to advancing IT governance
+                            literacy across industries through education and knowledge-sharing.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ═══ 2. VISION & MISSION ═══ -->
+        <div class="pcic-vm">
+
+            <div class="pcic-vm-left">
+
+                <div class="pcic-vm-block">
+                    <div class="pcic-vm-tag">
+                        <span class="pcic-vm-tag-line"></span>
+                        Vision
+                    </div>
+                    <h2 class="pcic-vm-heading">To be a trusted partner in digital transformation and cybersecurity.
+                    </h2>
+                    <p class="pcic-vm-body">We help organizations move from complexity to clarity — translating the
+                        ever-evolving landscape of technology risk into practical, business-aligned solutions that
+                        stick.</p>
+                </div>
+
+                <div class="pcic-vm-block">
+                    <div class="pcic-vm-tag">
+                        <span class="pcic-vm-tag-line"></span>
+                        Mission
+                    </div>
+                    <h2 class="pcic-vm-heading">Five commitments we hold ourselves to.</h2>
+                    <ul class="pcic-mission-list">
+                        <li>Simplifying the complexity of technology and regulations into clear, practical solutions.
+                        </li>
+                        <li>Providing consulting services and technology solutions based on governance, risk,
+                            compliance, and cybersecurity.</li>
+                        <li>Driving digital innovation and resilience to support clients' business sustainability.</li>
+                        <li>Building a collaborative work environment and fostering employee well-being.</li>
+                        <li>Expanding global capabilities through partnerships and continuous technological innovation.
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pcic-vm-right">
+                <div class="pcic-vm-photo"></div>
+                <div class="pcic-vm-credo-card">
+                    <div class="pcic-vm-credo-label">Our Core Principle</div>
+                    <p class="pcic-vm-credo-text">"Quality, commitment, and innovation in service are absolute measures
+                        to provide satisfaction to customers."</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ═══ 3. MILESTONE ═══ -->
+        <div class="pcic-milestone">
+            <div class="pcic-milestone-inner">
+
+                <div class="pcic-milestone-header">
+                    <span class="pcic-section-label">Our Journey</span>
+                    <h2 class="pcic-milestone-heading">Our Milestone</h2>
+                </div>
+
+                <div class="pcic-timeline">
+
+                    <div class="pcic-tl-item">
+                        <div class="pcic-tl-dot">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg>
+                        </div>
+                        <div class="pcic-tl-year">2021</div>
+                        <div class="pcic-tl-card">
+                            <p class="pcic-tl-text">Berdiri pada 24 Maret 2021 dengan tujuan awal menjadi lembaga
+                                sertifikasi profesi keamanan siber.</p>
+                        </div>
+                    </div>
+
+                    <div class="pcic-tl-item">
+                        <div class="pcic-tl-dot">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg>
+                        </div>
+                        <div class="pcic-tl-year">2022</div>
+                        <div class="pcic-tl-card">
+                            <p class="pcic-tl-text">Mengukuhkan fondasi jasa konsultasi IT GRC dan keamanan siber untuk
+                                organisasi di berbagai sektor.</p>
+                        </div>
+                    </div>
+
+                    <div class="pcic-tl-item">
+                        <div class="pcic-tl-dot">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg>
+                        </div>
+                        <div class="pcic-tl-year">2023</div>
+                        <div class="pcic-tl-card">
+                            <p class="pcic-tl-text">Mengembangkan jasa konsultasi dan literasi IT GRC, keamanan siber
+                                serta data privasi pada semua sektor industri.</p>
+                        </div>
+                    </div>
+
+                    <div class="pcic-tl-item">
+                        <div class="pcic-tl-dot">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg>
+                        </div>
+                        <div class="pcic-tl-year">2024</div>
+                        <div class="pcic-tl-card">
+                            <p class="pcic-tl-text">Membangun kemitraan dengan institusi pendidikan skala internasional
+                                dalam rangka inovasi berkelanjutan.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ 4. OUR CREDO ═══ -->
+        <div class="pcic-credo">
+
+            <div class="pcic-credo-left">
+                <span class="pcic-section-label">Our Philosophy</span>
+                <h2 class="pcic-credo-heading">Our<br><span>Credo.</span></h2>
+                <div class="pcic-credo-quote-mark">"</div>
+            </div>
+
+            <div class="pcic-credo-right">
+
+                <p class="pcic-credo-para">
+                    IT Governance and cybersecurity often feel complex and overwhelming — but they don't have to be. At
+                    PCI Quality, we simplify that complexity into clear, actionable solutions through tailored services
+                    designed to support your business and strategic goals.
+                </p>
+
+                <div class="pcic-credo-highlight">
+                    We take a collaborative approach, ensuring every recommendation we provide is practical,
+                    implementable, and aligned with your organization's needs and priorities.
+                </div>
+
+                <p class="pcic-credo-para">
+                    We understand the unique challenges faced by various industries in leveraging information and
+                    communication technologies while maintaining the delicate balance between usability and regulatory
+                    compliance.
+                </p>
+
+                <p class="pcic-credo-para">
+                    Our team shares a unified vision: to translate information and communication technology needs into
+                    solutions that align with your business objectives, while maintaining the highest standards of
+                    cybersecurity compliance. This allows you to focus on what truly matters — growing your business.
+                </p>
+
+                <p class="pcic-credo-para">
+                    For us, clients are partners, and our people are agents of change. With PCI Quality, you are never
+                    alone in building sustainable IT governance and cybersecurity practices.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ═══ CTA ═══ -->
+        <div class="pcic-cta-block">
+            <div class="pcic-cta-panel">
+                <div>
+                    <p class="pcic-cta-eyebrow">Get in Touch</p>
+                    <h3 class="pcic-cta-heading">Need assistance? Let's talk.</h3>
+                </div>
+                <a href="https://pci-quality.com/contact-us/" class="pcic-cta-btn">
+                    Contact Us
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+            <div class="pcic-cta-panel">
+                <div>
+                    <p class="pcic-cta-eyebrow">Join PCI Quality</p>
+                    <h3 class="pcic-cta-heading">Be part of a team that shapes the industry.</h3>
+                </div>
+                <a href="https://pci-quality.com/industries/" class="pcic-cta-btn">
+                    Discover More
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+    </div>
