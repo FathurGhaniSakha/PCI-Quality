@@ -1,0 +1,624 @@
+<style>
+    .pcic-root {
+        --primary: #ED1C24;
+        --primary-dark: #C5151E;
+        --primary-light: rgba(237, 28, 36, 0.08);
+        --text-main: #1E293B;
+        --text-muted: #64748B;
+        --border-color: #E2E8F0;
+        --surface: #ffffff;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        color: var(--text-main);
+        line-height: 1.6;
+        background: #F8F9FB;
+        margin: 0;
+        padding: 0;
+    }
+
+    .pcic-root * {
+        box-sizing: border-box;
+    }
+
+    .pcic-section-label {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 12px;
+        display: block;
+    }
+
+    /* ── INSIGHT ── */
+    .pcic-insights {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 88px 20px;
+    }
+
+    .pcic-insights-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 36px;
+    }
+
+    .pcic-insights-heading {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--text-main);
+        letter-spacing: -0.5px;
+        margin: 8px 0 0;
+    }
+
+    .pcic-insights-all {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--primary);
+        text-decoration: none;
+        transition: gap 0.2s;
+    }
+
+    .pcic-insights-all:hover {
+        gap: 10px;
+    }
+
+    .pcic-insights-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 16px;
+    }
+
+    .pcic-insight-card {
+        background: var(--surface);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        position: relative;
+    }
+
+    .pcic-insight-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--primary);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+        border-radius: 20px 20px 0 0;
+        z-index: 1;
+    }
+
+    .pcic-insight-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border-color: transparent;
+    }
+
+    .pcic-insight-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .pcic-insight-thumb {
+        width: 100%;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        background: #f0f0f0;
+        flex-shrink: 0;
+    }
+
+    .pcic-insight-card:nth-child(1) .pcic-insight-thumb {
+        aspect-ratio: 4/3;
+    }
+
+    .pcic-insight-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+        filter: grayscale(10%);
+    }
+
+    .pcic-insight-card:hover .pcic-insight-thumb img {
+        transform: scale(1.05);
+        filter: grayscale(0%);
+    }
+
+    .pcic-insight-body {
+        padding: 20px 22px 24px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    .pcic-insight-title {
+        font-size: 14.5px;
+        font-weight: 700;
+        color: var(--text-main);
+        line-height: 1.45;
+        flex: 1;
+    }
+
+    .pcic-insight-card:nth-child(1) .pcic-insight-title {
+        font-size: 17px;
+    }
+
+    .pcic-insight-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+        font-size: 11.5px;
+        color: var(--text-muted);
+    }
+
+    .pcic-insight-meta-dot {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--border-color);
+    }
+
+    .pcic-insight-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 14px;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--primary);
+        transition: gap 0.2s;
+        align-self: flex-start;
+    }
+
+    .pcic-insight-card:hover .pcic-insight-link {
+        gap: 10px;
+    }
+
+    /* ── ACKNOWLEDGE & ACHIEVEMENT ── */
+    .pcic-ack {
+        background: var(--surface);
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+        padding: 64px 0;
+    }
+
+    .pcic-ack-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+
+    .pcic-ack-divider {
+        background: var(--border-color);
+        align-self: stretch;
+    }
+
+    .pcic-ack-block-heading {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--text-main);
+        letter-spacing: -0.4px;
+        margin: 8px 0 28px;
+    }
+
+    .pcic-ack-logos {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        flex-wrap: wrap;
+    }
+
+    .pcic-ack-logo-placeholder {
+        width: 100px;
+        height: 44px;
+        background: var(--border-color);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--text-muted);
+    }
+
+    .pcic-ack-logo-img {
+        max-height: 200px;
+        max-width: 180px;
+        object-fit: contain;
+        opacity: 0.9;
+        transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .pcic-ack-logo-img:hover {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    .pcic-achieve-logos {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .pcic-achieve-badge {
+        width: 72px;
+        height: 72px;
+        background: var(--border-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-align: center;
+        padding: 8px;
+    }
+
+    .pcic-achieve-badge-img {
+        width: 245px;
+        height: 180px;
+        object-fit: contain;
+        opacity: 0.9;
+        transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .pcic-achieve-badge-img:hover {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+
+    /* ── CTA BLOCK ── */
+    .pcic-cta-block {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .pcic-cta-panel {
+        border-radius: 24px;
+        padding: 48px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 240px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pcic-cta-panel:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    .pcic-cta-panel:nth-child(1) {
+        background: linear-gradient(135deg, #ED1C24 0%, #C5151E 100%);
+        box-shadow: 0 20px 60px rgba(237, 28, 36, 0.2);
+    }
+
+    .pcic-cta-panel:nth-child(2) {
+        background: linear-gradient(135deg, #1E293B 0%, #111827 100%);
+        box-shadow: 0 20px 60px rgba(30, 41, 59, 0.2);
+    }
+
+    .pcic-cta-panel:nth-child(3) {
+        background: linear-gradient(135deg, #111827 0%, #0F172A 100%);
+        box-shadow: 0 20px 60px rgba(15, 23, 42, 0.2);
+        border: 1px solid rgba(237, 28, 36, 0.2);
+    }
+
+    .pcic-cta-panel::after {
+        content: '';
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        bottom: -50px;
+        right: -50px;
+        pointer-events: none;
+    }
+
+    .pcic-cta-panel:nth-child(1)::after {
+        background: rgba(255, 255, 255, 0.07);
+    }
+
+    .pcic-cta-panel:nth-child(2)::after {
+        background: rgba(237, 28, 36, 0.12);
+    }
+
+    .pcic-cta-panel:nth-child(3)::after {
+        background: rgba(237, 28, 36, 0.08);
+    }
+
+    .pcic-cta-eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        margin: 0 0 10px;
+    }
+
+    .pcic-cta-heading {
+        font-size: 20px;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.25;
+        letter-spacing: -0.3px;
+        margin: 0;
+    }
+
+    .pcic-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 28px;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-size: 13.5px;
+        font-weight: 700;
+        text-decoration: none;
+        width: fit-content;
+        transition: gap 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .pcic-cta-btn:hover {
+        gap: 14px;
+        transform: translateY(-2px);
+    }
+
+    .pcic-cta-panel:nth-child(1) .pcic-cta-btn {
+        background: #fff;
+        color: var(--primary);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .pcic-cta-panel:nth-child(2) .pcic-cta-btn {
+        background: var(--primary);
+        color: #fff;
+        box-shadow: 0 8px 24px rgba(237, 28, 36, 0.3);
+    }
+
+    .pcic-cta-panel:nth-child(3) .pcic-cta-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .pcic-cta-panel:nth-child(3) .pcic-cta-btn:hover {
+        background: rgba(255, 255, 255, 0.18);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+        .pcic-insights-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .pcic-cta-block {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .pcic-cta-panel:nth-child(3) {
+            grid-column: span 2;
+        }
+    }
+
+    @media (max-width: 860px) {
+        .pcic-ack-inner {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .pcic-ack-divider {
+            display: none;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .pcic-insights-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .pcic-cta-block {
+            grid-template-columns: 1fr;
+        }
+
+        .pcic-cta-panel:nth-child(3) {
+            grid-column: span 1;
+        }
+    }
+</style>
+
+<div class="pcic-root">
+
+    <!-- INSIGHT -->
+    <div class="pcic-insights">
+        <div class="pcic-insights-header">
+            <div>
+                <span class="pcic-section-label">Thought Leadership</span>
+                <h2 class="pcic-insights-heading">Insight</h2>
+            </div>
+            <a href="https://pci-quality.com/home/news/" class="pcic-insights-all">
+                View All Articles
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+        <div class="pcic-insights-grid">
+
+            <a href="https://pci-quality.com/ai-cybersecurity/" class="pcic-insight-card">
+                <div class="pcic-insight-thumb">
+                    <img src="https://pci-quality.com/wp-content/uploads/2026/09/Logo-G-Gemini.png"
+                        alt="AI Cybersecurity" loading="lazy">
+                </div>
+                <div class="pcic-insight-body">
+                    <div class="pcic-insight-title">AI Cybersecurity: Ketika Gemini Mengakses Sistem Perusahaan dalam
+                        Uji Keamanan</div>
+                    <div class="pcic-insight-meta">
+                        <span>8 min read</span><span class="pcic-insight-meta-dot"></span><span>September 2026</span>
+                    </div>
+                    <span class="pcic-insight-link">Read Article <svg width="11" height="11" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg></span>
+                </div>
+            </a>
+
+            <a href="https://pci-quality.com/cyber-range-service-pci-quality/" class="pcic-insight-card">
+                <div class="pcic-insight-thumb">
+                    <img src="https://pci-quality.com/wp-content/uploads/2026/09/Cyber-Range-Photo.png"
+                        alt="Cyber Range" loading="lazy">
+                </div>
+                <div class="pcic-insight-body">
+                    <div class="pcic-insight-title">Cyber Range: Cara Baru Menguji Kesiapan Organisasi Menghadapi
+                        Serangan Siber di Era AI</div>
+                    <div class="pcic-insight-meta">
+                        <span>8 min read</span><span class="pcic-insight-meta-dot"></span><span>September 2026</span>
+                    </div>
+                    <span class="pcic-insight-link">Read Article <svg width="11" height="11" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg></span>
+                </div>
+            </a>
+
+            <a href="https://pci-quality.com/cybersecurity-perusahaan/" class="pcic-insight-card">
+                <div class="pcic-insight-thumb">
+                    <img src="https://pci-quality.com/wp-content/uploads/2026/09/Cybersecurity.png" alt="Cybersecurity"
+                        loading="lazy">
+                </div>
+                <div class="pcic-insight-body">
+                    <div class="pcic-insight-title">Cybersecurity: Pengertian, Manfaat, dan Pentingnya bagi Perusahaan
+                        di era modern.</div>
+                    <div class="pcic-insight-meta">
+                        <span>12 min read</span><span class="pcic-insight-meta-dot"></span><span>September 2026</span>
+                    </div>
+                    <span class="pcic-insight-link">Read Article <svg width="11" height="11" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg></span>
+                </div>
+            </a>
+
+            <a href="https://pci-quality.com/openai-rilis-gpt-5-6-cyber-model-ai-yang-berpikir-seperti-hacker-untuk-perkuat-keamanan-siber/"
+                class="pcic-insight-card">
+                <div class="pcic-insight-thumb">
+                    <img src="https://pci-quality.com/wp-content/uploads/2026/09/Open-Ai-PCI-Quality-1.png" alt="OpenAI"
+                        loading="lazy">
+                </div>
+                <div class="pcic-insight-body">
+                    <div class="pcic-insight-title">OpenAI Rilis GPT-5.6-Cyber, Model AI yang Berpikir Seperti Hacker
+                        untuk Perkuat Keamanan Siber</div>
+                    <div class="pcic-insight-meta">
+                        <span>6 min read</span><span class="pcic-insight-meta-dot"></span><span>September 2026</span>
+                    </div>
+                    <span class="pcic-insight-link">Read Article <svg width="11" height="11" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg></span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- ACKNOWLEDGE & ACHIEVEMENT -->
+    <div class="pcic-ack">
+        <div class="pcic-ack-inner">
+            <div>
+                <span class="pcic-section-label">Memberships</span>
+                <h3 class="pcic-ack-block-heading">Acknowledge</h3>
+                <div class="pcic-ack-logos">
+                    <!-- GANTI: <img src="URL_LOGO_ASPI" class="pcic-ack-logo-img" alt="ASPI"> -->
+                    <img src="https://pci-quality.com/wp-content/uploads/2026/01/66f77ec80cc55-Asosiasi-Sistem-Pembayaran-Ind.png"
+                        class="pcic-ack-logo-img" alt="ASPI">
+                    <img src="https://pci-quality.com/wp-content/uploads/2026/01/Untitled-design-8-1.png"
+                        class="pcic-ack-logo-img" alt="BSSN">
+                </div>
+            </div>
+            <div class="pcic-ack-divider"></div>
+            <div>
+                <span class="pcic-section-label">Certifications</span>
+                <h3 class="pcic-ack-block-heading">Our Achievement</h3>
+                <div class="pcic-achieve-logos">
+                    <img src="https://pci-quality.com/wp-content/uploads/2026/01/LSSMKI-009-IDN.png"
+                        class="pcic-achieve-badge-img" alt="LSSMKI Certificate">
+                    <img src="https://pci-quality.com/wp-content/uploads/2026/01/MSCB-358.png"
+                        class="pcic-achieve-badge-img" alt="MSCB Certificate">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="pcic-cta-block">
+        <div class="pcic-cta-panel">
+            <div>
+                <p class="pcic-cta-eyebrow">Get in Touch</p>
+                <h3 class="pcic-cta-heading">Need assistance with your project?</h3>
+            </div>
+            <a href="https://pci-quality.com/contact-us/" class="pcic-cta-btn">
+                Contact Us
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+        <div class="pcic-cta-panel">
+            <div>
+                <p class="pcic-cta-eyebrow">Chat Direct</p>
+                <h3 class="pcic-cta-heading">Talk to us directly via WhatsApp.</h3>
+            </div>
+            <a href="https://wa.me/628118129496" class="pcic-cta-btn">
+                +62 811 812 9496
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+        <div class="pcic-cta-panel">
+            <div>
+                <p class="pcic-cta-eyebrow">Join PCI Quality</p>
+                <h3 class="pcic-cta-heading">Be part of a team that shapes the industry.</h3>
+            </div>
+            <a href="https://pci-quality.com/industries/" class="pcic-cta-btn">
+                Discover More
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+</div>
