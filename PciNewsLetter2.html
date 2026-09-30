@@ -1,0 +1,205 @@
+<style>
+    .pcic-nl-bot {
+        --primary: #ED1C24;
+        --primary-dark: #C5151E;
+        --text-main: #1E293B;
+        --text-muted: #64748B;
+        --border-color: #E2E8F0;
+        --surface: #ffffff;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .pcic-nl-bot * {
+        box-sizing: border-box;
+    }
+
+    /* ── DIVIDER before CTA ── */
+    .pcic-nl-divider {
+        max-width: 1200px;
+        margin: 16px auto 0;
+        padding: 0 20px;
+        border-top: 1px solid var(--border-color);
+    }
+
+    /* ── CTA BLOCK ── */
+    .pcic-nl-cta-block {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 56px 20px 80px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .pcic-nl-cta-panel {
+        border-radius: 24px;
+        padding: 52px 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 240px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pcic-nl-cta-panel:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    .pcic-nl-cta-panel:first-child {
+        background: linear-gradient(135deg, #ED1C24 0%, #C5151E 100%);
+        box-shadow: 0 20px 60px rgba(237, 28, 36, 0.2);
+    }
+
+    .pcic-nl-cta-panel:last-child {
+        background: linear-gradient(135deg, #1E293B 0%, #111827 100%);
+        box-shadow: 0 20px 60px rgba(30, 41, 59, 0.2);
+    }
+
+    .pcic-nl-cta-panel::after {
+        content: '';
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        bottom: -60px;
+        right: -60px;
+        pointer-events: none;
+    }
+
+    .pcic-nl-cta-panel:first-child::after {
+        background: rgba(255, 255, 255, 0.07);
+    }
+
+    .pcic-nl-cta-panel:last-child::after {
+        background: rgba(237, 28, 36, 0.12);
+    }
+
+    .pcic-nl-cta-eyebrow {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        margin: 0 0 12px;
+    }
+
+    .pcic-nl-cta-heading {
+        font-size: 24px;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.25;
+        letter-spacing: -0.4px;
+        margin: 0;
+        max-width: 300px;
+    }
+
+    .pcic-nl-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 36px;
+        padding: 14px 28px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        width: fit-content;
+        transition: gap 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .pcic-nl-cta-btn:hover {
+        gap: 14px;
+        transform: translateY(-2px);
+    }
+
+    .pcic-nl-cta-panel:first-child .pcic-nl-cta-btn {
+        background: #fff;
+        color: var(--primary);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .pcic-nl-cta-panel:last-child .pcic-nl-cta-btn {
+        background: var(--primary);
+        color: #fff;
+        box-shadow: 0 8px 24px rgba(237, 28, 36, 0.3);
+    }
+
+    .pcic-nl-cta-panel:first-child .pcic-nl-cta-btn:hover {
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .pcic-nl-cta-panel:last-child .pcic-nl-cta-btn:hover {
+        box-shadow: 0 12px 32px rgba(237, 28, 36, 0.4);
+    }
+
+
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+        .pcic-nl-cta-block {
+            grid-template-columns: 1fr;
+        }
+
+        .pcic-nl-cta-panel {
+            padding: 40px 32px;
+            min-height: 200px;
+        }
+
+        .pcic-nl-cta-heading {
+            font-size: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .pcic-nl-cta-panel {
+            padding: 36px 24px;
+        }
+
+
+    }
+</style>
+
+<div class="pcic-nl-bot">
+
+    <!-- DIVIDER -->
+    <div class="pcic-nl-divider"></div>
+
+    <!-- CTA BLOCK -->
+    <div class="pcic-nl-cta-block">
+
+        <div class="pcic-nl-cta-panel">
+            <div>
+                <p class="pcic-nl-cta-eyebrow">Get in Touch</p>
+                <h3 class="pcic-nl-cta-heading">Need assistance with your project?</h3>
+            </div>
+            <a href="https://pci-quality.com/contact-us/" class="pcic-nl-cta-btn">
+                Contact Us
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+
+        <div class="pcic-nl-cta-panel">
+            <div>
+                <p class="pcic-nl-cta-eyebrow">Join PCI Quality</p>
+                <h3 class="pcic-nl-cta-heading">Be part of a team that shapes the industry.</h3>
+            </div>
+            <a href="https://pci-quality.com/industries/" class="pcic-nl-cta-btn">
+                Discover More
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+
+    </div>
+
+</div>
